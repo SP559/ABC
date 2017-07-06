@@ -38,8 +38,10 @@ def webhook():
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
-
-                    send_message(sender_id, message_text":What kind of message is this. Ask Sumit, he knows better than me!")
+                    elements = []
+                    element = Element(title="Sumit told you to visit", item_url="https://axa-bs.com/")
+                    elements.append(element)
+                    send_message(sender_id, elements)
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
