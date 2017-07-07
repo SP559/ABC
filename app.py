@@ -61,7 +61,7 @@ def webhook():
                             "enjoy": send_generic,
                             #"receipt": send_receipt,
                             "quick reply": send_quick_reply,
-                            #"read receipt": send_read_receipt,
+                            "abcd": send_abcd,
                             #"typing on": send_typing_on,
                             #"typing off": send_typing_off,
                             #"account linking": send_account_linking
@@ -290,6 +290,29 @@ def send_generic(recipient_id):
         log(r.status_code)
         log(r.text)
 
+def send_abcd(recipient_id):
+    log("sending quick reply to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+            
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message":{
+            "text":"No he is not"
+          }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+        
 def send_quick_reply(recipient_id):
     log("sending quick reply to {recipient}".format(recipient=recipient_id))
 
@@ -299,12 +322,6 @@ def send_quick_reply(recipient_id):
     headers = {
         "Content-Type": "application/json"
     }
-    no = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message":{
-            "text":"No he is not"}})
             
     data = json.dumps({
         "recipient": {
@@ -316,32 +333,32 @@ def send_quick_reply(recipient_id):
               {
                 "content_type":"text",
                 "title":"Sumit",
-                "payload":"gif"
+                "payload":"abcd"
               },
               {
                 "content_type":"text",
                 "title":"Shaique",
-                "payload":"gif"
+                "payload":"abcd"
               },
               {
                 "content_type":"text",
                 "title":"Aman",
-                "payload":"gif"
+                "payload":"abcd"
               },
               {
                 "content_type":"text",
                 "title":"Amit",
-                "payload":"gif"
+                "payload":"abcd"
               },
               {
                 "content_type":"text",
                 "title":"Amrendra",
-                "payload":"gif"
+                "payload":"abcd"
               },
             ]
           }
     })
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=no)
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
