@@ -300,36 +300,35 @@ def send_quick_reply(recipient_id):
     headers = {
         "Content-Type": "application/json"
     }
-            
     data = json.dumps({
         "recipient": {
             "id": recipient_id
         },
         "message":{
-            "text":"Who is the Coolest guy in the team? choose or type axa, make me laugh, youtube or enjoy",
+            "text":"Who is the Coolest guy in the team? or type axa, make me laugh, youtube, enjoy",
             "quick_replies":[
               {
-                "content_type":"text"  
+                "content_type":"text",
                 "title":"Sumit",
                 "payload":"gif"
               },
               {
-                "content_type":"text"  
+                "content_type":"text",
                 "title":"Shaique",
                 "payload":"gif"
               },
               {
-                "content_type":"text"  
+                "content_type":"text",
                 "title":"Aman",
                 "payload":"gif"
               },
               {
-                "content_type":"text"  
+                "content_type":"text",
                 "title":"Amit",
                 "payload":"gif"
               },
               {
-                "content_type":"text"  
+                "content_type":"text",
                 "title":"Amrendra",
                 "payload":"gif"
               },
