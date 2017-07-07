@@ -91,10 +91,6 @@ pronouns = {
     "was": "were"
 }
 
-random.seed()
-print "I'm Sumit's bot. I can make you feel better. Tell me how you're feeling!"
-
-while True:
     input = re.split("[\.!?]",message_text.lower().rstrip('.!?'))
     full_reply=' '
     
@@ -111,7 +107,7 @@ while True:
                 response = response.format(*wildcards)
                 full_reply+=response+' '
                 
-                break
+              
     
   
                     send_message(sender_id, "thank you! your message is '%s' and Sumit told you to visit https://axa-bs.com/" % full_reply)
