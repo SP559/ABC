@@ -293,20 +293,24 @@ def send_generic(recipient_id):
 def send_abcd(recipient_id):
     log("sending quick reply to {recipient}".format(recipient=recipient_id))
 
-    params = {
+     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
     }
     headers = {
         "Content-Type": "application/json"
     }
-            
     data = json.dumps({
         "recipient": {
             "id": recipient_id
         },
-        "message":{
-            "text":"No he is not"
-          }
+        "message": {
+            "attachment":{
+            "type":"image",
+            "payload":{
+            "url": "http://wanna-joke.com/wp-content/uploads/2016/09/gif-3d-cool.gif"
+                }
+            }
+        }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
@@ -331,31 +335,26 @@ def send_quick_reply(recipient_id):
             "text":"Who is the Coolest guy in the team? choose or type axa, make me laugh, youtube or enjoy",
             "quick_replies":[
               {
-                "content_type":"text",
                 "type":"postback"  
                 "title":"Sumit",
                 "payload":"abcd"
               },
               {
-                "content_type":"text",
                 "type":"postback"  
                 "title":"Shaique",
                 "payload":"abcd"
               },
               {
-                "content_type":"text",
                 "type":"postback"  
                 "title":"Aman",
                 "payload":"abcd"
               },
               {
-                "content_type":"text",
                 "type":"postback"  
                 "title":"Amit",
                 "payload":"abcd"
               },
               {
-                "content_type":"text",
                 "type":"postback"  
                 "title":"Amrendra",
                 "payload":"abcd"
