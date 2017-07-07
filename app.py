@@ -311,27 +311,27 @@ def send_quick_reply(recipient_id):
               {
                 "content_type":"text"  
                 "title":"Sumit",
-                "payload":"make me laugh"
+                "payload":"gif"
               },
               {
                 "content_type":"text"  
                 "title":"Shaique",
-                "payload":"make me laugh"
+                "payload":"gif"
               },
               {
                 "content_type":"text"  
                 "title":"Aman",
-                "payload":"make me laugh"
+                "payload":"gif"
               },
               {
                 "content_type":"text"  
                 "title":"Amit",
-                "payload":"make me laugh"
+                "payload":"gif"
               },
               {
                 "content_type":"text"  
                 "title":"Amrendra",
-                "payload":"make me laugh"
+                "payload":"gif"
               },
             ]
           }
