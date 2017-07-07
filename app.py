@@ -304,7 +304,7 @@ def send_quick_reply(recipient_id):
             "id": recipient_id
         },
         "message":{
-            "text":"Who is the Coolest guy in the team? choose and then type image, gif, button or generic",
+            "text":"Who is the Coolest guy in the team? choose or type image, gif, button or generic",
             "quick_replies":[
               {
                 "content_type":"text",
