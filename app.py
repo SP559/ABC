@@ -61,7 +61,7 @@ def webhook():
                             "enjoy": send_generic,
                             #"receipt": send_receipt,
                             "quick reply": send_quick_reply,
-                            "abcd": send_abcd,
+                            #"abcd": send_abcd,
                             #"typing on": send_typing_on,
                             #"typing off": send_typing_off,
                             #"account linking": send_account_linking
@@ -290,33 +290,7 @@ def send_generic(recipient_id):
         log(r.status_code)
         log(r.text)
 
-def send_abcd(recipient_id):
-    log("sending quick reply to {recipient}".format(recipient=recipient_id))
 
-     params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-    }
-    headers = {
-        "Content-Type": "application/json"
-    }
-    data = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "attachment":{
-            "type":"image",
-            "payload":{
-            "url": "http://wanna-joke.com/wp-content/uploads/2016/09/gif-3d-cool.gif"
-                }
-            }
-        }
-    })
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-    if r.status_code != 200:
-        log(r.status_code)
-        log(r.text)
-        
 def send_quick_reply(recipient_id):
     log("sending quick reply to {recipient}".format(recipient=recipient_id))
 
@@ -335,29 +309,29 @@ def send_quick_reply(recipient_id):
             "text":"Who is the Coolest guy in the team? choose or type axa, make me laugh, youtube or enjoy",
             "quick_replies":[
               {
-                "content_type":"postback"  
+                "content_type":"text"  
                 "title":"Sumit",
-                "payload":"abcd"
+                "payload":"make me laugh"
               },
               {
-                "content_type":"postback"  
+                "content_type":"text"  
                 "title":"Shaique",
-                "payload":"abcd"
+                "payload":"make me laugh"
               },
               {
-                "content_type":"postback"  
+                "content_type":"text"  
                 "title":"Aman",
-                "payload":"abcd"
+                "payload":"make me laugh"
               },
               {
-                "content_type":"postback"  
+                "content_type":"text"  
                 "title":"Amit",
-                "payload":"abcd"
+                "payload":"make me laugh"
               },
               {
-                "content_type":"postback"  
+                "content_type":"text"  
                 "title":"Amrendra",
-                "payload":"abcd"
+                "payload":"make me laugh"
               },
             ]
           }
