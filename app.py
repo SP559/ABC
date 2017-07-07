@@ -332,26 +332,31 @@ def send_quick_reply(recipient_id):
             "quick_replies":[
               {
                 "content_type":"text",
+                "type":"postback"  
                 "title":"Sumit",
                 "payload":"abcd"
               },
               {
                 "content_type":"text",
+                "type":"postback"  
                 "title":"Shaique",
                 "payload":"abcd"
               },
               {
                 "content_type":"text",
+                "type":"postback"  
                 "title":"Aman",
                 "payload":"abcd"
               },
               {
                 "content_type":"text",
+                "type":"postback"  
                 "title":"Amit",
                 "payload":"abcd"
               },
               {
                 "content_type":"text",
+                "type":"postback"  
                 "title":"Amrendra",
                 "payload":"abcd"
               },
