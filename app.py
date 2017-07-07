@@ -52,13 +52,13 @@ def webhook():
                         # keywords and send back the corresponding example. Otherwise, just echo
                         # the text we received.
                         special_keywords = {
-                            "AXA": send_image,
-                            "Make me laugh": send_gif,
+                            "axa": send_image,
+                            "make me laugh": send_gif,
                             #"audio": send_audio,
                             #"video": send_video,
                             #"file": send_file,
-                            "Youtube": send_button,
-                            "Enjoy": send_generic,
+                            "youtube": send_button,
+                            "enjoy": send_generic,
                             #"receipt": send_receipt,
                             "quick reply": send_quick_reply,
                             #"read receipt": send_read_receipt,
@@ -304,7 +304,7 @@ def send_quick_reply(recipient_id):
             "id": recipient_id
         },
         "message":{
-            "text":"Who is the Coolest guy in the team? choose or type AXA, Make me laugh, Youtube or Enjoy",
+            "text":"Who is the Coolest guy in the team? choose or type axa, make me laugh, youtube or enjoy",
             "quick_replies":[
               {
                 "content_type":"text",
