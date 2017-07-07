@@ -52,13 +52,13 @@ def webhook():
                         # keywords and send back the corresponding example. Otherwise, just echo
                         # the text we received.
                         special_keywords = {
-                            "image": send_image,
-                            "gif": send_gif,
+                            "AXA": send_image,
+                            "Make me laugh": send_gif,
                             #"audio": send_audio,
                             #"video": send_video,
                             #"file": send_file,
-                            "button": send_button,
-                            "generic": send_generic,
+                            "Youtube": send_button,
+                            "Enjoy": send_generic,
                             #"receipt": send_receipt,
                             "quick reply": send_quick_reply,
                             #"read receipt": send_read_receipt,
@@ -128,7 +128,7 @@ def send_image(recipient_id):
             "attachment":{
             "type":"image",
             "payload":{
-            "url": "http://media.topman.com/wcsstore/TopMan/images/catalog/TM83U13MNAV_3col_F_1.jpg"
+            "url": "https://media.glassdoor.com/sqll/518746/axa-business-services-squarelogo-1424923973982.png"
                 }
             }
         }
@@ -156,7 +156,7 @@ def send_gif(recipient_id):
             "attachment":{
             "type":"image",
             "payload":{
-            "url": "http://cdn.osxdaily.com/wp-content/uploads/2013/07/dancing-banana.gif"
+            "url": "http://wanna-joke.com/wp-content/uploads/2016/09/gif-3d-cool.gif"
                 }
             }
         }
@@ -189,12 +189,12 @@ def send_button(recipient_id):
                     "buttons":[
                     {
                     "type":"web_url",
-                    "url":"https://www.tradesumo.com",
-                    "title":"See TradeSumo"
+                    "url":"https://www.youtube.com",
+                    "title":"Visit Youtube"
                     },
                     {
                     "type":"postback",
-                    "title":"Start Chatting",
+                    "title":"peace",
                     "payload":"image"
                     }
                     ]
@@ -227,55 +227,55 @@ def send_generic(recipient_id):
                     "template_type":"generic",
                     "elements":[
                       {
-                        "title":"Grilled Cheese & Co",
-                        "item_url":"http://www.ilovegrilledcheese.com",
-                        "image_url":"http://www.thelogofactory.com/wp-content/uploads/2015/10/grilled-cheese-co-logo.png",
-                        "subtitle":"One of life's simple pleasures!",
+                        "title":"AXA",
+                        "item_url":"http://www.axa-bs.com",
+                        "image_url":"https://media.glassdoor.com/sqll/518746/axa-business-services-squarelogo-1424923973982.png",
+                        "subtitle":"Company you want to work with!",
                         "buttons":[
                           {
                             "type":"web_url",
-                            "url":"http://www.ilovegrilledcheese.com",
-                            "title":"View Website"
+                            "url":"http://www.youtube.com",
+                            "title":"Enjoy"
                           },
                           {
                             "type":"postback",
-                            "title":"Start Chatting",
+                            "title":"Peace",
                             "payload":"quick reply"
                           }              
                         ]
                       },
                       {
                         "title":"Tyto Online",
-                        "item_url":"https://www.tytoonline.com",
-                        "image_url":"https://www.tytoonline.com/assets/Tyto_Online_Sky_Logo-802ce726f540fa74f9eb5a1dcfcccabe63bffb37212af99f9eb4b709c118c716.png",
-                        "subtitle":"Tyto Online is a quest-based, online role-playing game.",
+                        "item_url":"https://www.axa-bs.com",
+                        "image_url":"https://media.glassdoor.com/sqll/518746/axa-business-services-squarelogo-1424923973982.png",
+                        "subtitle":"Company you want to work with!",
                         "buttons":[
                           {
                             "type":"web_url",
-                            "url":"https://www.tytoonline.com",
-                            "title":"View Website"
+                            "url":"https://www.youtube.com",
+                            "title":"Enjoy"
                           },
                           {
                             "type":"postback",
-                            "title":"Start Chatting",
+                            "title":"Enjoy",
                             "payload":"quick reply"
                           }              
                         ]
                       },
                       {
                         "title":"Magic Leap",
-                        "item_url":"https://www.magicleap.com/#/home",
-                        "image_url":"https://www.magicleap.com/img/ml-logo.gif",
-                        "subtitle":"Your new way to bring magic back into the world.",
+                        "item_url":"https://www.axa-bs.com",
+                        "image_url":"https://media.glassdoor.com/sqll/518746/axa-business-services-squarelogo-1424923973982.png",
+                        "subtitle":"Company you want to work with!",
                         "buttons":[
                           {
                             "type":"web_url",
-                            "url":"https://www.magicleap.com/#/home",
-                            "title":"View Website"
+                            "url":"https://www.youtube.com",
+                            "title":"enjoy"
                           },
                           {
                             "type":"postback",
-                            "title":"Start Chatting",
+                            "title":"Peace",
                             "payload":"quick reply"
                           }              
                         ]
@@ -304,7 +304,7 @@ def send_quick_reply(recipient_id):
             "id": recipient_id
         },
         "message":{
-            "text":"Who is the Coolest guy in the team? choose or type image, gif, button or generic",
+            "text":"Who is the Coolest guy in the team? choose or type AXA, Make me laugh, Youtube or Enjoy",
             "quick_replies":[
               {
                 "content_type":"text",
