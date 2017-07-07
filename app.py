@@ -24,6 +24,7 @@ def verify():
 @app.route('/', methods=['POST'])
 def webhook():
 
+    print(request.get_json())
     # endpoint for processing incoming messaging events
 
     data = request.get_json()
@@ -31,86 +32,49 @@ def webhook():
 
     if data["object"] == "page":
 
-        for entry in data["entry"]:
+        for entry in data["entry"]: # loop over each entry (there may be multiple entries if multiple messages sent at once)
+            
+
             for messaging_event in entry["messaging"]:
 
                 if messaging_event.get("message"):  # someone sent us a message
 
-                    sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
-                    recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                    message_text = messaging_event["message"]["text"]  # the message's text
-                    responses = (
-    ("hello",                ("Hi!", "Hello!", "Greetings!", "Howdy!")),
-    ("hi",                   ("Hi!", "Hello!", "Greetings!", "Howdy!")),
-    ("how are you",          ("I'm fine, thank you.",)),
-    ("i need (.*)",          ("Why do you need {}?", "Would it really help you to get {}?", "Are you sure you need {}?")),
-    ("why don't you (.*)",   ("Do you really think I don't {}?", "Perhaps eventually I will {}.", "Do you really want me to {}?")),
-    ("why can't I (.*)",     ("Do you think you should be able to {}?", "If you could {}, what would you do?", "I don't know -- why can't you {}?", "Have you really tried?")),
-    ("i can't (.*)",         ("How do you know you can't {}?", "Perhaps you could {}if you tried.", "What would it take for you to {}?")),
-    ("i am (.*)",            ("Did you come to me because you are {}?", "How long have you been {}?", "How do you feel about being {}?")),
-    ("are you (.*)",         ("Why does it matter whether I am {}?", "Would you prefer it if I were not {}?", "Perhaps you believe I am {}.", "I may be {}-- what do you think?")),
-    ("how (.*)",             ("How do you suppose?", "Perhaps you can answer your own question.", "Why can't you answer your question?", "What is it you're really asking?")),
-    ("i think (.*)",         ("Do you doubt {}?", "Do you really think so?", "But you're not sure {}?")),
-    ("(.*) friend (.*)",     ("Tell me more about your friends.", "What do you value in a friend?")),
-    ("yes",                  ("Okay, but can you tell me more?", "Can you actually be sure?", "You seem quite certain.")),
-    ("no",                   ("Why not?", "Can you tell me why you say no?", "Are you sure?")),
-    ("is it (.*)",           ("Do you think it is {}?", "Perhaps it's {}-- what do you think?", "If it were {}, what would you do?", "It could well be that {}.")),
-    ("can you (.*)",         ("If I could {}, then what?", "Why do you ask if I can {}?")),
-    ("can i (.*)",           ("Do you want to be able to {}?", "If you could {}, would you?")),
-    ("you are (.*)",         ("Why do you think I am {}?", "Perhaps you would like me to be {}.", "Are you really talking about yourself?")),
-    ("you're (.*)",          ("Why do you say I am {}?", "Why do you think I am {}?", "Are we talking about you, or me?")),
-    ("i don't (.*)",         ("Why don't you {}?", "DO you want to {}?")),
-    ("i feel (.*)",          ("Tell me more about these feelings.", "Do you often feel {}?", "When do you usually feel {}?", "When you feel {}, what do you do?")),
-    ("i have (.*)",          ("Why do you tell me that you've {}?", "Have you really {}?", "Now that you have {}, what will you do next?")),
-    ("i would (.*)",         ("Could you explain why you would {}?", "Why would you {}?", "Who else knows that you would {}?")),
-    ("is there (.*)",        ("Do you think there is {}?", "Is it likely that there is {}?", "Would you like there to be {}?")),
-    ("my name is (.*)",      ("Hi, {}",)),
-    ("my (.*)",              ("Why do you say that your {}?", "When your {}, how do you feel?")),
-    ("you (.*)",             ("We should be discussing you, not me.", "Why do you say that about me?", "Why do you care whether I {}?")),
-    ("i want (.*)",          ("What would it mean to you if you got {}?", "Why do you want {}?", "What would you do if you got {}?", "If you got {}, then what you do?")),
-    ("i don't know (.*)",    ("Perhaps you should learn.", "I don't know either.")),
-    ("i'm (.*)",             ("Why are you {}?",)),
-    ("because (.*)",         ("if {}, what else is true?", "Is that a good reason?", "Are there any other good reasons?", "Is that the only reason?", "Why do you think {}?")),
-    ("i (.*)",               ("Why do you {}?",)),
-    ("(.*) is (.*)",         ("Why is {} {}?",)),
-    ("(.*) can't (.*)",      ("Why can't {}, {}")),
-    ("why (.*)",             ("What do you think?", "Why do you think {}?", "Why don't you know the answer yourself?")),
-    ("(.*) are (.*)",        ("Why are {} {}?",)),
-    ("(.*)",                 ("Can you please elaborate?", "I don't fully understand.", "Let's stop talking about this.", "How are you feeling about this?")),
-)
+                    if messaging_event.get("message").get("text"):
 
-pronouns = {
-    "i'm": "you're", 
-    "i": "you", 
-    "me": "you",
-    "yours": "mine",
-    "you": "I",
-    "am": "are",
-    "my": "your",
-    "you're": "I'm",
-    "was": "were"
-}
-while True:
-    input = re.split("[\.!?]",message_text.lower().rstrip('.!?'))
-    full_reply=' '
-    
-    for sentence in input:
-        sentence=sentence.lstrip()
-        for pattern in responses:
-            wildcards = []
-            if re.match(pattern[0], sentence):
-                wildcards = filter(bool, re.split(pattern[0], sentence))
-                # replace pronouns
-                wildcards = [' '.join(pronouns.get(word, word) for word in wildcard.split()) for wildcard in wildcards]
+                        sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
+                        recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+                        message_text = messaging_event["message"]["text"]  # the message's text
+                        message_text = message_text.lower() # convert to lower case
 
-                response = random.choice(pattern[1])
-                response = response.format(*wildcards)
-                full_reply+=response+' '
-                
-                break
-    
- send_message(sender_id, "thank you! your message is '%s' and Sumit told you to visit https://axa-bs.com/" % full_reply)
-                    
+                        #send_message(sender_id, "got it, thanks!")
+
+                        # If we receive a text message, check to see if it matches any special
+                        # keywords and send back the corresponding example. Otherwise, just echo
+                        # the text we received.
+                        special_keywords = {
+                            "image": send_image,
+                            "gif": send_gif,
+                            #"audio": send_audio,
+                            #"video": send_video,
+                            #"file": send_file,
+                            "button": send_button,
+                            "generic": send_generic,
+                            #"receipt": send_receipt,
+                            "quick reply": send_quick_reply,
+                            #"read receipt": send_read_receipt,
+                            #"typing on": send_typing_on,
+                            #"typing off": send_typing_off,
+                            #"account linking": send_account_linking
+                        }
+
+                        if message_text in special_keywords:
+                            special_keywords[message_text](sender_id) # activate the function
+                            send_message(sender_id, "Yayyy!")
+                            return "ok", 200
+                        else:
+                            send_message(sender_id, "Sumit said thanks for messaging! Type image, gif, button or generic")
+                            send_quick_reply(sender_id)
+                            #page.send(recipient_id, message_text, callback=send_text_callback, notification_type=NotificationType.REGULAR)
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
@@ -147,6 +111,233 @@ def send_message(recipient_id, message_text):
         log(r.status_code)
         log(r.text)
 
+def send_image(recipient_id):
+    log("sending image to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment":{
+            "type":"image",
+            "payload":{
+            "url": "http://media.topman.com/wcsstore/TopMan/images/catalog/TM83U13MNAV_3col_F_1.jpg"
+                }
+            }
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+
+def send_gif(recipient_id):
+    log("sending gif to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment":{
+            "type":"image",
+            "payload":{
+            "url": "http://cdn.osxdaily.com/wp-content/uploads/2013/07/dancing-banana.gif"
+                }
+            }
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+
+def send_button(recipient_id):
+    log("sending buttons to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message":{
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"What do you want to do next?",
+                    "buttons":[
+                    {
+                    "type":"web_url",
+                    "url":"https://www.tradesumo.com",
+                    "title":"See TradeSumo"
+                    },
+                    {
+                    "type":"postback",
+                    "title":"Start Chatting",
+                    "payload":"image"
+                    }
+                    ]
+                }
+            }
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+def send_generic(recipient_id):
+    log("sending generic template to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message":{
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"generic",
+                    "elements":[
+                      {
+                        "title":"Grilled Cheese & Co",
+                        "item_url":"http://www.ilovegrilledcheese.com",
+                        "image_url":"http://www.thelogofactory.com/wp-content/uploads/2015/10/grilled-cheese-co-logo.png",
+                        "subtitle":"One of life's simple pleasures!",
+                        "buttons":[
+                          {
+                            "type":"web_url",
+                            "url":"http://www.ilovegrilledcheese.com",
+                            "title":"View Website"
+                          },
+                          {
+                            "type":"postback",
+                            "title":"Start Chatting",
+                            "payload":"quick reply"
+                          }              
+                        ]
+                      },
+                      {
+                        "title":"Tyto Online",
+                        "item_url":"https://www.tytoonline.com",
+                        "image_url":"https://www.tytoonline.com/assets/Tyto_Online_Sky_Logo-802ce726f540fa74f9eb5a1dcfcccabe63bffb37212af99f9eb4b709c118c716.png",
+                        "subtitle":"Tyto Online is a quest-based, online role-playing game.",
+                        "buttons":[
+                          {
+                            "type":"web_url",
+                            "url":"https://www.tytoonline.com",
+                            "title":"View Website"
+                          },
+                          {
+                            "type":"postback",
+                            "title":"Start Chatting",
+                            "payload":"quick reply"
+                          }              
+                        ]
+                      },
+                      {
+                        "title":"Magic Leap",
+                        "item_url":"https://www.magicleap.com/#/home",
+                        "image_url":"https://www.magicleap.com/img/ml-logo.gif",
+                        "subtitle":"Your new way to bring magic back into the world.",
+                        "buttons":[
+                          {
+                            "type":"web_url",
+                            "url":"https://www.magicleap.com/#/home",
+                            "title":"View Website"
+                          },
+                          {
+                            "type":"postback",
+                            "title":"Start Chatting",
+                            "payload":"quick reply"
+                          }              
+                        ]
+                      }
+                    ]
+                }
+            }
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+def send_quick_reply(recipient_id):
+    log("sending quick reply to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message":{
+            "text":"Who is the hottest guy in the team?",
+            "quick_replies":[
+              {
+                "content_type":"text",
+                "title":"Ivan",
+                "payload":"gif"
+              },
+              {
+                "content_type":"text",
+                "title":"Thang",
+                "payload":"gif"
+              },
+              {
+                "content_type":"text",
+                "title":"Boris",
+                "payload":"gif"
+              },
+              {
+                "content_type":"text",
+                "title":"Igit",
+                "payload":"gif"
+              },
+              {
+                "content_type":"text",
+                "title":"Ramana",
+                "payload":"gif"
+              },
+            ]
+          }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
 
 def log(message):  # simple wrapper for logging to stdout on heroku
     print str(message)
