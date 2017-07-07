@@ -245,7 +245,7 @@ def send_generic(recipient_id):
                         ]
                       },
                       {
-                        "title":"Tyto Online",
+                        "title":"AXA",
                         "item_url":"https://www.axa-bs.com",
                         "image_url":"https://media.glassdoor.com/sqll/518746/axa-business-services-squarelogo-1424923973982.png",
                         "subtitle":"Company you want to work with!",
@@ -257,13 +257,13 @@ def send_generic(recipient_id):
                           },
                           {
                             "type":"postback",
-                            "title":"Enjoy",
+                            "title":"Peace",
                             "payload":"quick reply"
                           }              
                         ]
                       },
                       {
-                        "title":"Magic Leap",
+                        "title":"AXA",
                         "item_url":"https://www.axa-bs.com",
                         "image_url":"https://media.glassdoor.com/sqll/518746/axa-business-services-squarelogo-1424923973982.png",
                         "subtitle":"Company you want to work with!",
@@ -271,7 +271,7 @@ def send_generic(recipient_id):
                           {
                             "type":"web_url",
                             "url":"https://www.youtube.com",
-                            "title":"enjoy"
+                            "title":"Enjoy"
                           },
                           {
                             "type":"postback",
@@ -328,8 +328,8 @@ def send_quick_reply(recipient_id):
               },
               {
                 "content_type":"text",
-                "title":"Ramana",
-                "payload":"Amrendra"
+                "title":"Amrendra",
+                "payload":"gif"
               },
             ]
           }
