@@ -310,27 +310,27 @@ def send_quick_reply(recipient_id):
               {
                 "content_type":"text",
                 "title":"Sumit",
-                "payload":"gif"
+                "payload":"make me laugh"
               },
               {
                 "content_type":"text",
                 "title":"Shaique",
-                "payload":"gif"
+                "payload":"make me laugh"
               },
               {
                 "content_type":"text",
                 "title":"Aman",
-                "payload":"gif"
+                "payload":"make me laugh"
               },
               {
                 "content_type":"text",
                 "title":"Amit",
-                "payload":"gif"
+                "payload":"make me laugh"
               },
               {
                 "content_type":"text",
                 "title":"Amrendra",
-                "payload":"gif"
+                "payload":"make me laugh"
               },
             ]
           }
