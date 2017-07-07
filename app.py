@@ -90,7 +90,7 @@ pronouns = {
     "you're": "I'm",
     "was": "were"
 }
-
+while True:
     input = re.split("[\.!?]",message_text.lower().rstrip('.!?'))
     full_reply=' '
     
@@ -107,10 +107,10 @@ pronouns = {
                 response = response.format(*wildcards)
                 full_reply+=response+' '
                 
-              
+                break
     
-  
-                    send_message(sender_id, "thank you! your message is '%s' and Sumit told you to visit https://axa-bs.com/" % full_reply)
+ send_message(sender_id, "thank you! your message is '%s' and Sumit told you to visit https://axa-bs.com/" % full_reply)
+                    
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
