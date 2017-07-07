@@ -72,7 +72,7 @@ def webhook():
                             send_message(sender_id, "Yayyy!")
                             return "ok", 200
                         else:
-                            send_message(sender_id, "Sumit said thanks for messaging! Type image, gif, button or generic")
+                            send_message(sender_id, "Sumit said thanks for messaging!")
                             send_quick_reply(sender_id)
                             #page.send(recipient_id, message_text, callback=send_text_callback, notification_type=NotificationType.REGULAR)
 
@@ -304,32 +304,32 @@ def send_quick_reply(recipient_id):
             "id": recipient_id
         },
         "message":{
-            "text":"Who is the hottest guy in the team?",
+            "text":"Who is the Coolest guy in the team? choose and then type image, gif, button or generic",
             "quick_replies":[
               {
                 "content_type":"text",
-                "title":"Ivan",
+                "title":"Sumit",
                 "payload":"gif"
               },
               {
                 "content_type":"text",
-                "title":"Thang",
+                "title":"Shaique",
                 "payload":"gif"
               },
               {
                 "content_type":"text",
-                "title":"Boris",
+                "title":"Aman",
                 "payload":"gif"
               },
               {
                 "content_type":"text",
-                "title":"Igit",
+                "title":"Amit",
                 "payload":"gif"
               },
               {
                 "content_type":"text",
                 "title":"Ramana",
-                "payload":"gif"
+                "payload":"Amrendra"
               },
             ]
           }
