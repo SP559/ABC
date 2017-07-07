@@ -335,27 +335,27 @@ def send_quick_reply(recipient_id):
             "text":"Who is the Coolest guy in the team? choose or type axa, make me laugh, youtube or enjoy",
             "quick_replies":[
               {
-                "type":"postback"  
+                "content_type":"postback"  
                 "title":"Sumit",
                 "payload":"abcd"
               },
               {
-                "type":"postback"  
+                "content_type":"postback"  
                 "title":"Shaique",
                 "payload":"abcd"
               },
               {
-                "type":"postback"  
+                "content_type":"postback"  
                 "title":"Aman",
                 "payload":"abcd"
               },
               {
-                "type":"postback"  
+                "content_type":"postback"  
                 "title":"Amit",
                 "payload":"abcd"
               },
               {
-                "type":"postback"  
+                "content_type":"postback"  
                 "title":"Amrendra",
                 "payload":"abcd"
               },
