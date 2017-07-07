@@ -299,6 +299,13 @@ def send_quick_reply(recipient_id):
     headers = {
         "Content-Type": "application/json"
     }
+    no = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message":{
+            "text":"No he is not"}})
+            
     data = json.dumps({
         "recipient": {
             "id": recipient_id
@@ -334,7 +341,7 @@ def send_quick_reply(recipient_id):
             ]
           }
     })
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=no)
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
