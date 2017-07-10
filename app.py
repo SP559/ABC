@@ -227,9 +227,9 @@ def send_button(recipient_id):
                     "title":"Visit Youtube"
                     },
                     {
-                    "type":"web_wrl",
-                    "url":"https://www.rainymood.com",
-                    "title":"Peace"
+                    "type":"postback",
+                    "payload":"https://www.rainymood.com",
+                    "title":"peace"
                     }
                     ]
                 }
@@ -272,9 +272,9 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"web_wrl",
-                            "url":"https://www.rainymood.com",
-                            "title":"Peace"
+                            "type":"postback",
+                            "payload":"https://www.rainymood.com",
+                            "title":"peace"
                           }              
                         ]
                       },
@@ -290,9 +290,9 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"web_wrl",
-                            "url":"https://www.rainymood.com",
-                            "title":"Peace"
+                            "type":"postback",
+                            "payload":"https://www.rainymood.com",
+                            "title":"peace"
                           }              
                         ]
                       },
@@ -308,9 +308,9 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"web_wrl",
-                            "url":"https://www.rainymood.com",
-                            "title":"Peace"
+                            "type":"postback",
+                            "payload":"https://www.rainymood.com",
+                            "title":"peace"
                           }              
                         ]
                       }
