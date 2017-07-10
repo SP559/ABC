@@ -62,7 +62,7 @@ def webhook():
                             "amit": send_call,
                             "quick reply": send_quick_reply,
                             "amrendra": send_call,
-                            #"peace": send_gif,
+                            "peace": send_gif,
                             #"typing off": send_typing_off,
                             #"account linking": send_account_linking
                         }
@@ -83,7 +83,45 @@ def webhook():
                     pass
 
                 if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                    pass
+                    
+                    if messaging_event.get("message"):  # someone sent us a message
+
+                      if messaging_event.get("message").get("text"):
+
+                         sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
+                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+                         message_text = messaging_event["message"]["text"]  # the message's text
+                         message_text = message_text.lower() # convert to lower case
+
+                        #send_message(sender_id, "got it, thanks!")
+
+                        # If we receive a text message, check to see if it matches any special
+                        # keywords and send back the corresponding example. Otherwise, just echo
+                        # the text we received.
+                         special_keywords = {
+                            "axa": send_image,
+                            "make me laugh": send_gif,
+                            "sumit": send_call,
+                            "shaique": send_call,
+                            "aman": send_call,
+                            "youtube": send_button,
+                            "enjoy": send_generic,
+                            "amit": send_call,
+                            "quick reply": send_quick_reply,
+                            "amrendra": send_call,
+                            "peace": send_gif,
+                            #"typing off": send_typing_off,
+                            #"account linking": send_account_linking
+                        }
+
+                        if message_text in special_keywords:
+                            special_keywords[message_text](sender_id) # activate the function
+                            send_message(sender_id, "Yayyy!")
+                            return "ok", 200
+                        else:
+                            send_message(sender_id, "Sumit said thanks for messaging!")
+                            send_quick_reply(sender_id)
+                            #page.send(recipient_id, message_text, callback=send_text_callback, notification_type=NotificationType.REGULAR)
 
     return "ok", 200
 
