@@ -228,9 +228,9 @@ def send_button(recipient_id):
                     "title":"Visit Youtube"
                     },
                     {
-                    "type":"postback",
-                    "payload":"https://www.rainymood.com",
-                    "title":"peace"
+                    "type":"postback",    
+                    "title":"Peace",
+                    "payload":"image"
                     }
                     ]
                 }
@@ -273,9 +273,9 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"postback",
-                            "payload":"https://www.rainymood.com",
-                            "title":"peace"
+                            "type":"postback",    
+                            "title":"Peace",
+                            "payload":"image"
                           }              
                         ]
                       },
@@ -291,9 +291,9 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"postback",
-                            "payload":"https://www.rainymood.com",
-                            "title":"peace"
+                            "type":"postback",    
+                            "title":"Peace",
+                            "payload":"image""
                           }              
                         ]
                       },
@@ -309,9 +309,9 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"postback",
-                            "payload":"https://www.rainymood.com",
-                            "title":"peace"
+                            "type":"postback",    
+                            "title":"Peace",
+                            "payload":"image""
                           }              
                         ]
                       }
