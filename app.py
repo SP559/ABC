@@ -62,7 +62,7 @@ def webhook():
                             "amit": send_call,
                             "quick reply": send_quick_reply,
                             "amrendra": send_call,
-                            "peace": send_gif,
+                            #peace": send_gif,
                             #"typing off": send_typing_off,
                             #"account linking": send_account_linking
                         }
@@ -83,7 +83,7 @@ def webhook():
                     pass
 
                 if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                    pass
+                    received_postback(messaging_event)
                     
 
     return "ok", 200
@@ -229,7 +229,7 @@ def send_button(recipient_id):
                     },
                     {
                     "type":"postback",
-                    "payload":"https://www.rainymood.com",
+                    "payload":"peace",
                     "title":"peace"
                     }
                     ]
@@ -274,7 +274,7 @@ def send_generic(recipient_id):
                           },
                           {
                             "type":"postback",
-                            "payload":"https://www.rainymood.com",
+                            "payload":"peace",
                             "title":"peace"
                           }              
                         ]
@@ -292,7 +292,7 @@ def send_generic(recipient_id):
                           },
                           {
                             "type":"postback",
-                            "payload":"https://www.rainymood.com",
+                            "payload":"peace",
                             "title":"peace"
                           }              
                         ]
@@ -310,7 +310,7 @@ def send_generic(recipient_id):
                           },
                           {
                             "type":"postback",
-                            "payload":"https://www.rainymood.com",
+                            "payload":"peace",
                             "title":"peace"
                           }              
                         ]
@@ -325,8 +325,25 @@ def send_generic(recipient_id):
         log(r.status_code)
         log(r.text)
 
+def received_postback(event):
 
-def send_quick_reply(recipient_id):
+    sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
+    recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+
+    # The payload param is a developer-defined field which is set in a postback
+    # button for Structured Messages
+    payload = event["postback"]["payload"]
+
+    log("received postback from {recipient} with payload {payload}".format(recipient=recipient_id, payload=payload))
+
+    if payload == 'peace':
+        # Get Started button was pressed
+        send_text_message(sender_id, "Welcome! Peace.")
+    else:
+        # Notify sender that postback was successful
+        send_text_message(sender_id, "Ok")
+
+ def send_quick_reply(recipient_id):
     log("sending quick reply to {recipient}".format(recipient=recipient_id))
 
     params = {
