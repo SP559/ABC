@@ -324,7 +324,7 @@ def send_generic(recipient_id):
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
-
+"""
 def received_postback(event):
 
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -342,7 +342,7 @@ def received_postback(event):
     else:
         # Notify sender that postback was successful
         send_text_message(sender_id, "Ok")
-
+"""
  def send_quick_reply(recipient_id):
     log("sending quick reply to {recipient}".format(recipient=recipient_id))
 
