@@ -62,7 +62,7 @@ def webhook():
                             "amit": send_call,
                             "quick reply": send_quick_reply,
                             "amrendra": send_call,
-                            #peace": send_gif,
+                            #"peace": send_gif,
                             #"typing off": send_typing_off,
                             #"account linking": send_account_linking
                         }
@@ -229,7 +229,7 @@ def send_button(recipient_id):
                     },
                     {
                     "type":"postback",
-                    "payload":"peace",
+                    "payload":"https://www.rainymood.com",
                     "title":"peace"
                     }
                     ]
@@ -274,7 +274,7 @@ def send_generic(recipient_id):
                           },
                           {
                             "type":"postback",
-                            "payload":"peace",
+                            "payload":"https://www.rainymood.com",
                             "title":"peace"
                           }              
                         ]
@@ -292,7 +292,7 @@ def send_generic(recipient_id):
                           },
                           {
                             "type":"postback",
-                            "payload":"peace",
+                            "payload":"https://www.rainymood.com",
                             "title":"peace"
                           }              
                         ]
@@ -310,7 +310,7 @@ def send_generic(recipient_id):
                           },
                           {
                             "type":"postback",
-                            "payload":"peace",
+                            "payload":"https://www.rainymood.com",
                             "title":"peace"
                           }              
                         ]
