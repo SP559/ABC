@@ -324,25 +324,7 @@ def send_generic(recipient_id):
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
-"""
-def received_postback(event):
 
-    sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
-    recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-
-    # The payload param is a developer-defined field which is set in a postback
-    # button for Structured Messages
-    payload = event["postback"]["payload"]
-
-    log("received postback from {recipient} with payload {payload}".format(recipient=recipient_id, payload=payload))
-
-    if payload == 'peace':
-        # Get Started button was pressed
-        send_text_message(sender_id, "Welcome! Peace.")
-    else:
-        # Notify sender that postback was successful
-        send_text_message(sender_id, "Ok")
-"""
  def send_quick_reply(recipient_id):
     log("sending quick reply to {recipient}".format(recipient=recipient_id))
 
