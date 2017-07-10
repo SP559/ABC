@@ -62,7 +62,7 @@ def webhook():
                             "amit": send_gif,
                             "quick reply": send_quick_reply,
                             "amrendra": send_gif,
-                            #"typing on": send_typing_on,
+                            "peace": send_gif,
                             #"typing off": send_typing_off,
                             #"account linking": send_account_linking
                         }
@@ -239,7 +239,7 @@ def send_generic(recipient_id):
                           },
                           {
                             "type":"postback",
-                            "title":"Peace",
+                            "title":"peace",
                             "payload":"quick reply"
                           }              
                         ]
@@ -257,7 +257,7 @@ def send_generic(recipient_id):
                           },
                           {
                             "type":"postback",
-                            "title":"Peace",
+                            "title":"peace",
                             "payload":"quick reply"
                           }              
                         ]
@@ -275,7 +275,7 @@ def send_generic(recipient_id):
                           },
                           {
                             "type":"postback",
-                            "title":"Peace",
+                            "title":"peace",
                             "payload":"quick reply"
                           }              
                         ]
