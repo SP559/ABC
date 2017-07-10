@@ -193,7 +193,7 @@ def send_button(recipient_id):
                     "title":"Visit Youtube"
                     },
                     {
-                    "type":"postback",
+                    "content_type":"text",
                     "title":"peace",
                     "payload":"image"
                     }
@@ -238,7 +238,7 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"postback",
+                            "content_type":"text",
                             "title":"peace",
                             "payload":"quick reply"
                           }              
@@ -256,7 +256,7 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"postback",
+                            "content_type":"text",
                             "title":"peace",
                             "payload":"quick reply"
                           }              
@@ -274,7 +274,7 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"postback",
+                            "content_type":"text",
                             "title":"peace",
                             "payload":"quick reply"
                           }              
