@@ -227,7 +227,7 @@ def send_button(recipient_id):
                     "title":"Visit Youtube"
                     },
                     {
-                    "type":"web_wrl",
+                    "type":"postback",
                     "url":"https://www.rainymood.com",
                     "title":"Peace"
                     }
@@ -272,7 +272,7 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"web_wrl",
+                            "type":"postback",
                             "url":"https://www.rainymood.com",
                             "title":"Peace"
                           }              
@@ -290,7 +290,7 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"web_wrl",
+                            "type":"postback",
                             "url":"https://www.rainymood.com",
                             "title":"Peace"
                           }              
@@ -308,7 +308,7 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"web_wrl",
+                            "type":"postback",
                             "url":"https://www.rainymood.com",
                             "title":"Peace"
                           }              
