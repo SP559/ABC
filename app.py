@@ -54,14 +54,14 @@ def webhook():
                         special_keywords = {
                             "axa": send_image,
                             "make me laugh": send_gif,
-                            "sumit": send_gif,
-                            "shaique": send_gif,
-                            "aman": send_gif,
+                            "sumit": send_call,
+                            "shaique": send_call,
+                            "aman": send_call,
                             "youtube": send_button,
                             "enjoy": send_generic,
-                            "amit": send_gif,
+                            "amit": send_call,
                             "quick reply": send_quick_reply,
-                            "amrendra": send_gif,
+                            "amrendra": send_call,
                             "peace": send_gif,
                             #"typing off": send_typing_off,
                             #"account linking": send_account_linking
@@ -166,6 +166,39 @@ def send_gif(recipient_id):
         log(r.status_code)
         log(r.text)
 
+def send_call(recipient_id):
+    log("sending gif to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message":{
+    "attachment":{
+      "type":"template",
+         "payload":{
+            "template_type":"button",
+            "text":"You like him? Talk to him",
+            "buttons":[
+               {
+                  "type":"phone_number",
+                  "title":"Call him",
+                  "payload":"+917872684490"
+               }
+            ]
+         }
+    }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
 
 def send_button(recipient_id):
     log("sending buttons to {recipient}".format(recipient=recipient_id))
