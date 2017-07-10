@@ -62,7 +62,7 @@ def webhook():
                             "amit": send_call,
                             "quick reply": send_quick_reply,
                             "amrendra": send_call,
-                            #"peace": send_gif,
+                            "peace": send_gif,
                             #"typing off": send_typing_off,
                             #"account linking": send_account_linking
                         }
@@ -193,8 +193,7 @@ def send_call(recipient_id):
                }
             ]
          }
-       }
-     }
+    }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
@@ -228,8 +227,8 @@ def send_button(recipient_id):
                     },
                     {
                     "type":"postback",
-                    "url":"https://www.rainymood.com",
-                    "title":"Peace"
+                    "title":"peace",
+                    "payload":"image"
                     }
                     ]
                 }
@@ -273,8 +272,8 @@ def send_generic(recipient_id):
                           },
                           {
                             "type":"postback",
-                            "url":"https://www.rainymood.com",
-                            "title":"Peace"
+                            "title":"peace",
+                            "payload":"quick reply"
                           }              
                         ]
                       },
@@ -291,8 +290,8 @@ def send_generic(recipient_id):
                           },
                           {
                             "type":"postback",
-                            "url":"https://www.rainymood.com",
-                            "title":"Peace"
+                            "title":"peace",
+                            "payload":"quick reply"
                           }              
                         ]
                       },
@@ -309,8 +308,8 @@ def send_generic(recipient_id):
                           },
                           {
                             "type":"postback",
-                            "url":"https://www.rainymood.com",
-                            "title":"Peace"
+                            "title":"peace",
+                            "payload":"quick reply"
                           }              
                         ]
                       }
