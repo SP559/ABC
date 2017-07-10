@@ -62,7 +62,7 @@ def webhook():
                             "amit": send_call,
                             "quick reply": send_quick_reply,
                             "amrendra": send_call,
-                            "peace": send_gif,
+                            #"peace": send_gif,
                             #"typing off": send_typing_off,
                             #"account linking": send_account_linking
                         }
@@ -227,9 +227,9 @@ def send_button(recipient_id):
                     "title":"Visit Youtube"
                     },
                     {
-                    "type":"postback",
-                    "title":"peace",
-                    "payload":"image"
+                    "type":"web_wrl",
+                    "url":"https://www.rainymood.com",
+                    "title":"Peace"
                     }
                     ]
                 }
@@ -272,9 +272,9 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"postback",
-                            "title":"peace",
-                            "payload":"quick reply"
+                            "type":"web_wrl",
+                            "url":"https://www.rainymood.com",
+                            "title":"Peace"
                           }              
                         ]
                       },
@@ -290,9 +290,9 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"postback",
-                            "title":"peace",
-                            "payload":"quick reply"
+                            "type":"web_wrl",
+                            "url":"https://www.rainymood.com",
+                            "title":"Peace"
                           }              
                         ]
                       },
@@ -308,9 +308,9 @@ def send_generic(recipient_id):
                             "title":"Enjoy"
                           },
                           {
-                            "type":"postback",
-                            "title":"peace",
-                            "payload":"quick reply"
+                            "type":"web_wrl",
+                            "url":"https://www.rainymood.com",
+                            "title":"Peace"
                           }              
                         ]
                       }
