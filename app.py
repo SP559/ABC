@@ -54,14 +54,14 @@ def webhook():
                         special_keywords = {
                             "axa": send_image,
                             "make me laugh": send_gif,
-                            #"audio": send_audio,
-                            #"video": send_video,
-                            #"file": send_file,
+                            "sumit": send_gif,
+                            "shaique": send_gif,
+                            "aman": send_gif,
                             "youtube": send_button,
                             "enjoy": send_generic,
-                            #"receipt": send_receipt,
+                            "amit": send_gif,
                             "quick reply": send_quick_reply,
-                            #"abcd": send_abcd,
+                            "amrendra": send_gif,
                             #"typing on": send_typing_on,
                             #"typing off": send_typing_off,
                             #"account linking": send_account_linking
@@ -309,27 +309,27 @@ def send_quick_reply(recipient_id):
             "quick_replies":[
               {
                 "content_type":"text",
-                "title":"Sumit",
+                "title":"sumit",
                 "payload":"make me laugh"
               },
               {
                 "content_type":"text",
-                "title":"Shaique",
+                "title":"shaique",
                 "payload":"make me laugh"
               },
               {
                 "content_type":"text",
-                "title":"Aman",
+                "title":"aman",
                 "payload":"make me laugh"
               },
               {
                 "content_type":"text",
-                "title":"Amit",
+                "title":"amit",
                 "payload":"make me laugh"
               },
               {
                 "content_type":"text",
-                "title":"Amrendra",
+                "title":"amrendra",
                 "payload":"make me laugh"
               },
             ]
