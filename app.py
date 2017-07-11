@@ -73,7 +73,7 @@ def webhook():
                         else:
                             send_message(sender_id, "Sumit said thanks for messaging!")
                             send_quick_reply(sender_id)
-                            image_url = messaging_event["message"]["text"]
+                            image_url = "http://orig09.deviantart.net/734d/f/2008/114/b/d/stock___cat_by_wachowicz.jpg"
                             api_key ='acc_4c787cb712b1c8d'
                             api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
                             response = requests.get('https://api.imagga.com/v1/tagging?url=%s' % image_url,auth=(api_key, api_secret))
