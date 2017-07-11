@@ -73,6 +73,11 @@ def webhook():
                         else:
                             send_message(sender_id, "Sumit said thanks for messaging!")
                             send_quick_reply(sender_id)
+                            image_url = messaging_event["message"]["text"]
+                            api_key ='acc_4c787cb712b1c8d'
+                            api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
+                            response = requests.get('https://api.imagga.com/v1/tagging?url=%s' % image_url,auth=(api_key, api_secret))
+                            send_message(sender_id, "%s" % (response.json()))
                             #page.send(recipient_id, message_text, callback=send_text_callback, notification_type=NotificationType.REGULAR)
                    
                     if messaging_event["message"].get("attachments"):
@@ -81,11 +86,7 @@ def webhook():
                        send_message(sender_id, "Attachment recieved, Ok!")
                        send_photo(sender_id)
                        send_message(sender_id, "%s" % (attachment_link))
-                       image_url = 'attachment_link'
-                       api_key ='acc_4c787cb712b1c8d'
-                       api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
-                       response = requests.get('https://api.imagga.com/v1/tagging?url=%s' % image_url,auth=(api_key, api_secret))
-                       send_message(sender_id, "%s" % (response.json()))
+                       
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
