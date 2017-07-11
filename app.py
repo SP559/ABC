@@ -79,7 +79,8 @@ def webhook():
                     if messaging_event["message"].get("attachments"):
                        sender_id = messaging_event["sender"]["id"] 
                        attachment_link = messaging_event["message"]["attachments"][0]["payload"]["url"]
-                       send_message(sender_id, "Attachment recieved, Thanks!")
+                       send_message(sender_id, "Attachment recieved, Ok!")
+                       send_photo(sender_id)
               
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
@@ -91,6 +92,33 @@ def webhook():
                     pass
 
     return "ok", 200
+
+def send_photo(recipient_id):
+    log("sending image to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment":{
+            "type":"image",
+            "payload":{
+            "url": "http://arcofevansville.org/wp-content/uploads/2017/01/thankyou4.png"
+                }
+            }
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
 
 
 def send_message(recipient_id, message_text):
