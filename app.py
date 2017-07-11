@@ -81,7 +81,7 @@ def webhook():
                        attachment_link = messaging_event["message"]["attachments"][0]["payload"]["url"]
                        send_message(sender_id, "Attachment recieved, Ok!")
                        send_photo(sender_id)
-              
+                       send_message(sender_id, "%s" % (attachment_link))
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
