@@ -75,7 +75,12 @@ def webhook():
                             send_message(sender_id, "Sumit said thanks for messaging!")
                             send_quick_reply(sender_id)
                             #page.send(recipient_id, message_text, callback=send_text_callback, notification_type=NotificationType.REGULAR)
-
+                   
+                    if messaging_event["message"].get("attachments"):
+                       sender_id = messaging_event["sender"]["id"] 
+                       attachment_link = messaging_event["message"]["attachments"][0]["payload"]["url"]
+                       send_message(sender_id, "Attachment recieved, Thanks!")
+              
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
