@@ -5,8 +5,14 @@ import re
 import random
 import requests
 from flask import Flask, request
-app = Flask(__name__)
+from flask import Flask, render_template
+from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
 
+app = Flask(__name__)
+english_bot = ChatBot("English Bot")
+english_bot.set_trainer(ChatterBotCorpusTrainer)
+english_bot.train("chatterbot.corpus.english")
 
 @app.route('/', methods=['GET'])
 def verify():
@@ -73,6 +79,7 @@ def webhook():
                         else:
                             send_message(sender_id, "Sumit said thanks for messaging!")
                             send_quick_reply(sender_id)
+                            send_message(sender_id, str(english_bot.get_response(message_text)))
                             #page.send(recipient_id, message_text, callback=send_text_callback, notification_type=NotificationType.REGULAR)
                    
                     if messaging_event["message"].get("attachments"):
