@@ -68,7 +68,7 @@ def webhook():
                             "amit": send_call,
                             "quick reply": send_quick_reply,
                             "amrendra": send_call,
-                            #"peace": send_gif,
+                            "hi": send_bd,
                             #"typing off": send_typing_off,
                             #"account linking": send_account_linking
                         }
@@ -133,7 +133,32 @@ def send_photo(recipient_id):
         log(r.status_code)
         log(r.text)
 
+def send_bd(recipient_id, message_text):
 
+    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text="Hi! When is your birthday, enter in dd/mm/yyyy format!"))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "text": "Hi! When is your birthday, enter in dd/mm/yyyy format!"
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+def send_image(recipient_id):
+    log("sending image to {recipient}".format(recipient=recipient_id)
+        
 def send_message(recipient_id, message_text):
 
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
