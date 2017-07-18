@@ -77,11 +77,15 @@ def webhook():
                             special_keywords[message_text](sender_id) # activate the function
                             send_message(sender_id, "Yayyy!")
                             return "ok", 200
+                        
+                        elif (time.strftime("%d/%m/%Y")==message_text)
+                             send_photo(sender_id)
+                             return "0k", 200
                         else:
                             send_message(sender_id, str(english_bot.get_response(message_text)))
                             send_message(sender_id, "When is your birthday, enter in dd/mm/yy format!")
-                              if (time.strftime("%d/%m/%Y")=='18/07/2017'):
-                                  send_photo(sender_id)
+                            
+                               
                             
                             #page.send(recipient_id, message_text, callback=send_text_callback, notification_type=NotificationType.REGULAR)
                    
