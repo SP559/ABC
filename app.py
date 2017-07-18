@@ -1,4 +1,5 @@
 import os
+import time
 import sys
 import json
 import re
@@ -77,9 +78,11 @@ def webhook():
                             send_message(sender_id, "Yayyy!")
                             return "ok", 200
                         else:
-                            send_message(sender_id, "Sumit said thanks for messaging!")
-                            send_quick_reply(sender_id)
                             send_message(sender_id, str(english_bot.get_response(message_text)))
+                            send_message(sender_id, "When is your birthday, enter in dd/mm/yy format!")
+                              if (time.strftime("%d/%m/%Y")=='18/07/2017'):
+                                  send_photo(sender_id)
+                            
                             #page.send(recipient_id, message_text, callback=send_text_callback, notification_type=NotificationType.REGULAR)
                    
                     if messaging_event["message"].get("attachments"):
@@ -116,7 +119,7 @@ def send_photo(recipient_id):
             "attachment":{
             "type":"image",
             "payload":{
-            "url": "http://arcofevansville.org/wp-content/uploads/2017/01/thankyou4.png"
+            "url": "http://www.happybirthday.quotesms.com/images/latest-happy-birthday-images.jpg"
                 }
             }
         }
