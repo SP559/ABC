@@ -78,7 +78,7 @@ def webhook():
                             send_message(sender_id, "Yayyy!")
                             return "ok", 200
                         
-                        elif (str(time.strftime("%d/%m/%Y"))==message_text)
+                        elif ((time.strftime("%d/%m/%Y"))==message_text)
                              send_photo(sender_id)
                              return "0k", 200
                         else:
