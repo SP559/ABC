@@ -83,7 +83,7 @@ def webhook():
                              return "0k", 200
                         else:
                             send_message(sender_id, str(english_bot.get_response(message_text)))
-                            send_message(sender_id, "When is your birthday, enter in dd/mm/yyyy format!")
+                            
                             
                                
                             
