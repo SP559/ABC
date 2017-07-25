@@ -10,7 +10,7 @@ from flask import Flask, render_template
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
 import urllib2
-from clarifai.rest import ClarifaiApp
+#from clarifai.rest import ClarifaiApp
 #appp = ClarifaiApp(apii_key='c6b965c0cbb342f994ec963000661201')
 
 app = Flask(__name__)
