@@ -109,8 +109,9 @@ def webhook():
                        #response = requests.get('https://api.imagga.com/v1/tagging?url=%s' % abc,auth=(api_key, api_secret))
                        send_message(sender_id, "Attachment recieved, Ok!")
                        send_message(sender_id, attachment_link )
+                       send_message(sender_id, ab)
                        #send_message(sender_id, str(response.text))
-                       send_message(sender_id, str(ab))
+                      
                        
                      
                 if messaging_event.get("delivery"):  # delivery confirmation
