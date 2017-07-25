@@ -9,4 +9,3 @@ requests==2.10.0
 wsgiref==0.1.2
 chatterbot>=0.4.6
 urllib
-clarifai
