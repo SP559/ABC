@@ -100,7 +100,7 @@ def webhook():
                        sender_id = messaging_event["sender"]["id"] 
                        attachment_link = messaging_event["message"]["attachments"][0]["payload"]["url"]
                        abc= str(attachment_link)
-                       model = app.models.get('general-v1.3')
+                       model = appp.models.get('general-v1.3')
                        image = ClImage(url=attachment_link)
                        ab=model.predict([image])
                        api_key = 'acc_4c787cb712b1c8d'
