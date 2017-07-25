@@ -92,10 +92,10 @@ def webhook():
                     if messaging_event["message"].get("attachments"):
                        sender_id = messaging_event["sender"]["id"] 
                        attachment_link = messaging_event["message"]["attachments"][0]["payload"]["url"]
-                       
+                       abc= str(attachment_link)
                        api_key = 'acc_4c787cb712b1c8d'
                        api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
-                       response = requests.get('https://api.imagga.com/v1/tagging?url=%s' % 'attachment_link',auth=(api_key, api_secret))
+                       response = requests.get('https://api.imagga.com/v1/tagging?url=%s' % abc ,auth=(api_key, api_secret))
                        send_message(sender_id, "Attachment recieved, Ok!")
                        send_message(sender_id, attachment_link )
                        send_message(sender_id, str(response.text))
