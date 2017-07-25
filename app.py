@@ -97,7 +97,11 @@ def webhook():
                        api_key = 'acc_4c787cb712b1c8d'
                        api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
                        final_str = 'https://api.imagga.com/v1/tagging?url=' + abc
+                       final_str1 = 'https://scontent.xx.fbcdn.net/v/t34.0-12/20401036_121132708509876_503475204_n.jpg?&oh=9ddca57750a38849d57bb798777e1164&oe=59797E6E&_nc_ad=z-m'
+                       final_str2 = 'https://scontent.xx.fbcdn.net/v/t34.0-12/20401036_121132708509876_503475204_n.jpg?_nc_ad=z-m&oh=9ddca57750a38849d57bb798777e1164&oe=59797E6E' 
                        response = requests.get(final_str, auth=(api_key, api_secret))
+                       response = requests.get(final_str1, auth=(api_key, api_secret))
+                       response = requests.get(final_str2, auth=(api_key, api_secret))
                        send_message(sender_id, "Attachment recieved, Ok!")
                        send_message(sender_id, attachment_link )
                        send_message(sender_id, "final_str")
