@@ -9,7 +9,7 @@ from flask import Flask, request
 from flask import Flask, render_template
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
-import urllib
+import urllib2
 
 app = Flask(__name__)
 english_bot = ChatBot("English Bot")
@@ -27,6 +27,10 @@ def verify():
 
     return "Hello world", 200
 
+def download_web_image(url):
+    request = urllib2.Request(url)
+    img = urllib2.urlopen(request).read()
+    with open ('test.jpg', 'w') as f: f.write(img)
 
 @app.route('/', methods=['POST'])
 def webhook():
@@ -98,8 +102,7 @@ def webhook():
                        api_key = 'acc_4c787cb712b1c8d'
                        api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
                        final_str = 'https://api.imagga.com/v1/tagging?url=' + abc
-                       
-                       urllib.urlretrieve(final_str, filename="cat.jpg") 
+                       download_web_image(abc)
                        response = requests.get(final_str, auth=(api_key, api_secret))
                        send_message(sender_id, "Attachment recieved, Ok!")
                        send_message(sender_id, attachment_link )
