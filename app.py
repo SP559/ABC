@@ -103,7 +103,7 @@ def webhook():
                        from clarifai.rest import ClarifaiApp
 
                        app = ClarifaiApp(api_key='c6b965c0cbb342f994ec963000661201')
-                       ab=app.tag_urls([attachment_link])
+                       ab=str(app.tag_urls(['%s' % attachment_link]))
                        #api_key = 'acc_4c787cb712b1c8d'
                        #api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
                        #response = requests.get('https://api.imagga.com/v1/tagging?url=%s' % abc,auth=(api_key, api_secret))
