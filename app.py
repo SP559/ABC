@@ -97,7 +97,7 @@ def webhook():
                        api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
                        image_url = attachment_link
                        response = requests.get('https://api.imagga.com/v1/tagging?url=%s' % image_url,auth=(api_key, api_secret))
-                       send_message(sender_id, response.json())
+                       send_message(sender_id, response)
                      
                        
                      
