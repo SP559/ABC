@@ -10,7 +10,7 @@ from flask import Flask, render_template
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
 import urllib2
-#from clarifai.rest import ClarifaiApp
+from clarifai.rest import ClarifaiApp
 #appp = ClarifaiApp(apii_key='c6b965c0cbb342f994ec963000661201')
 
 app = Flask(__name__)
@@ -100,16 +100,17 @@ def webhook():
                        sender_id = messaging_event["sender"]["id"] 
                        attachment_link = messaging_event["message"]["attachments"][0]["payload"]["url"]
                        abc= str(attachment_link)
-                       #model = appp.models.get('general-v1.3')
-                       #image = ClImage(url=attachment_link)
-                       #ab=model.predict([image])
-                       api_key = 'acc_4c787cb712b1c8d'
-                       api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
-                       response = requests.get('https://api.imagga.com/v1/tagging?url=%s' % abc,auth=(api_key, api_secret))
+                       from clarifai.rest import ClarifaiApp
+
+                       app = ClarifaiApp(api_key='c6b965c0cbb342f994ec963000661201')
+                       ab=app.tag_urls([attachment_link])
+                       #api_key = 'acc_4c787cb712b1c8d'
+                       #api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
+                       #response = requests.get('https://api.imagga.com/v1/tagging?url=%s' % abc,auth=(api_key, api_secret))
                        send_message(sender_id, "Attachment recieved, Ok!")
                        send_message(sender_id, attachment_link )
-                       send_message(sender_id, str(response.text))
-                       #send_message(sender_id, str(ab))
+                       #send_message(sender_id, str(response.text))
+                       send_message(sender_id, str(ab))
                        
                      
                 if messaging_event.get("delivery"):  # delivery confirmation
