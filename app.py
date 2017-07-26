@@ -11,7 +11,7 @@ from flask import Flask, render_template
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
 import urllib2
-from clarifai.rest import ClarifaiApp
+#from clarifai.rest import ClarifaiApp
 #appp = ClarifaiApp(apii_key='c6b965c0cbb342f994ec963000661201')
 
 app = Flask(__name__)
@@ -101,17 +101,31 @@ def webhook():
                        sender_id = messaging_event["sender"]["id"] 
                        attachment_link = messaging_event["message"]["attachments"][0]["payload"]["url"]
                        #download(attachment_link)
-                       app = ClarifaiApp(api_key= 'c6b965c0cbb342f994ec963000661201')
+                       #app = ClarifaiApp(api_key= 'c6b965c0cbb342f994ec963000661201')
                        #ab=type((app.tag_urls(['https://samples.clarifai.com/metro-north.jpg'])))
-                       abc=str((app.tag_urls(['%s'% attachment_link])))
+                       #abc=str((app.tag_urls(['%s'% attachment_link])))
                        #img_url = attachment_link
                        #file_name = "test.jpg"
-                       send_message(sender_id, os.getcwd())
+                       #send_message(sender_id, os.getcwd())
                        #print abc
                        #print('%s' % ab)
                        #send_message(sender_id, str(response.text))
                        send_message(sender_id, "Attachment recieved, Ok!")
                        send_message(sender_id, attachment_link )
+                       api_key = 'acc_4c787cb712b1c8d'
+                       api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
+                       etag = "test"
+				       filename = str(etag)+'.jpg'#Download file and store it with new name
+				       response = requests.get(attachment_link, stream=True)
+				       with open(filename, 'wb') as out_file:
+    					       shutil.copyfileobj(response.raw, out_file)
+				       del response
+
+				       with open(join(dirname(__file__), filename), 'rb') as imag:
+        				response = requests.get('https://api.imagga.com/v1/tagging?url=%s' % imag,auth=(api_key, api_secret))
+                        send_message(sender_id, str(response))
+					   os.remove(filename)
+                       
                        '''
                        send_message(sender_id, abc)
                        files = [f for f in os.listdir('.') if os.path.isfile(f)]
