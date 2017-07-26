@@ -11,3 +11,4 @@ chatterbot>=0.4.6
 urllib
 clarifai==2.0.30
 enum34
+shutil
