@@ -121,12 +121,12 @@ def webhook():
 	               response = requests.get(attachment_link, stream=True)
 	               with open(filename, 'wb') as out_file:
     			        shutil.copyfileobj(response.raw, out_file)
-	               del response
+	               
 
 		       with open(join(dirname(__file__), filename), 'rb') as imag:
         		       response = requests.get('https://api.imagga.com/v1/tagging?url=https://echoapp1.herokuapp.com/app/%s'% filename ,auth=(api_key, api_secret))
                                send_message(sender_id, str(response.json()))
-		       os.remove(filename)
+		       
                        
                        '''
                        send_message(sender_id, abc)
