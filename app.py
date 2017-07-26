@@ -116,9 +116,10 @@ def webhook():
                        send_message(sender_id, attachment_link )
                        api_key = 'acc_4c787cb712b1c8d'
                        api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
-                       response = requests.get('https://github.com/sumitpandey5559/ABC/tree/master/app/download.jpg',auth=(api_key, api_secret))
+                       '''
+		       response = requests.get('https://github.com/sumitpandey5559/ABC/tree/master/app/download.jpg',auth=(api_key, api_secret))
                        send_message(sender_id, str(response.json()))
-		       '''
+		      
 		       etag = "test"
 	               filename = str(etag)+'.jpg'#Download file and store it with new name
 	               response = requests.get(attachment_link, stream=True)
