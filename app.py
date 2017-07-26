@@ -112,6 +112,9 @@ def webhook():
                        send_message(sender_id, "Attachment recieved, Ok!")
                        send_message(sender_id, attachment_link )
                        send_message(sender_id, abc)
+                       files = [f for f in os.listdir('.') if os.path.isfile(f)]
+                       for f in files:
+                           send_message(sender_id, f)
                        #send_message(sender_id, str(response.text))
                        #img = urllib2.urlopen(img_url)
                        #localFile = open(os.getcwd()+file_name , 'wb')
