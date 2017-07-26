@@ -124,7 +124,7 @@ def webhook():
 	               del response
 
 		       with open(join(dirname(__file__), filename), 'rb') as imag:
-        		       response = requests.get('https://api.imagga.com/v1/tagging?url="https://echoapp1.herokuapp.com%s"% imag' ,auth=(api_key, api_secret))
+        		       response = requests.get('https://api.imagga.com/v1/tagging?url=https://echoapp1.herokuapp.com%s'% imag ,auth=(api_key, api_secret))
                                send_message(sender_id, str(response.json()))
 		       os.remove(filename)
                        
