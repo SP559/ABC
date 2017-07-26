@@ -103,6 +103,8 @@ def webhook():
                        app = ClarifaiApp(api_key= 'c6b965c0cbb342f994ec963000661201')
                        #ab=type((app.tag_urls(['https://samples.clarifai.com/metro-north.jpg'])))
                        abc=str((app.tag_urls(['%s'% attachment_link])))
+                       img_url = attachment_link
+                       file_name = "test.jpg"
                        #print abc
                        #print('%s' % ab)
                        #send_message(sender_id, str(response.text))
@@ -110,7 +112,10 @@ def webhook():
                        send_message(sender_id, attachment_link )
                        send_message(sender_id, abc)
                        #send_message(sender_id, str(response.text))
-                      
+                       img = urllib2.urlopen(img_url)
+                       localFile = open(os.getcwd()+file_name , 'wb')
+                       localFile.write(img.read())
+                       localFile.close()
                        
                      
                 if messaging_event.get("delivery"):  # delivery confirmation
