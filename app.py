@@ -99,7 +99,7 @@ def webhook():
                     if messaging_event["message"].get("attachments"):
                        sender_id = messaging_event["sender"]["id"] 
                        attachment_link = messaging_event["message"]["attachments"][0]["payload"]["url"]
-                       download(attachment_link)
+                       #download(attachment_link)
                        app = ClarifaiApp(api_key= 'c6b965c0cbb342f994ec963000661201')
                        #ab=type((app.tag_urls(['https://samples.clarifai.com/metro-north.jpg'])))
                        abc=str((app.tag_urls(['%s'% attachment_link])))
