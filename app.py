@@ -124,7 +124,7 @@ def webhook():
 	               
 
 		       with open(join(dirname(__file__), filename), 'rb') as imag:
-        		       response = requests.get('https://github.com/sumitpandey5559/ABC/tree/master/app/%s'% filename ,auth=(api_key, api_secret))
+        		       response = requests.get('https://github.com/sumitpandey5559/ABC/tree/master/app/download.jpg'% ,auth=(api_key, api_secret))
                                send_message(sender_id, str(response.json()))
 		       
                        
