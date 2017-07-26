@@ -5,7 +5,7 @@ import json
 import re
 import random
 import requests
-import shutil
+#import shutil
 from flask import Flask, request
 from flask import Flask, render_template
 from chatterbot import ChatBot
@@ -112,6 +112,7 @@ def webhook():
                        #send_message(sender_id, str(response.text))
                        send_message(sender_id, "Attachment recieved, Ok!")
                        send_message(sender_id, attachment_link )
+                       '''
                        send_message(sender_id, abc)
                        files = [f for f in os.listdir('.') if os.path.isfile(f)]
                        for f in files:
@@ -121,6 +122,7 @@ def webhook():
                            shutil.copyfileobj(response1.raw, out_file)
                        del response1
                        #send_message(sender_id, str(response.text))
+                       '''
                        # NOT WORKIN ---
                        #img = urllib2.urlopen(img_url)
                        #localFile = open(os.getcwd()+file_name , 'wb')
