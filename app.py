@@ -125,7 +125,7 @@ def webhook():
 
 		       with open(join(dirname(__file__), filename), 'rb') as imag:
         		       response = requests.get('https://api.imagga.com/v1/tagging?url=%s' % imag,auth=(api_key, api_secret))
-                               send_message(sender_id, str(response))
+                               send_message(sender_id, str(response.json()))
 		       os.remove(filename)
                        
                        '''
