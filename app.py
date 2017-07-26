@@ -116,11 +116,12 @@ def webhook():
                        for f in files:
                            send_message(sender_id, f)
                        #send_message(sender_id, str(response.text))
-                       img = urllib2.urlopen(img_url)
-                       localFile = open(os.getcwd()+file_name , 'wb')
-                       localFile = open("https://github.com/sumitpandey5559/ABC/tree/master/"+file_name , 'wb')
-                       localFile.write(img.read())
-                       localFile.close()
+                       # NOT WORKIN ---
+                       #img = urllib2.urlopen(img_url)
+                       #localFile = open(os.getcwd()+file_name , 'wb')
+                       #localFile = open("https://github.com/sumitpandey5559/ABC/tree/master/"+file_name , 'wb')
+                       #localFile.write(img.read())
+                       #localFile.close()
                        
                      
                 if messaging_event.get("delivery"):  # delivery confirmation
