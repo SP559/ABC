@@ -116,7 +116,10 @@ def webhook():
                        send_message(sender_id, attachment_link )
                        api_key = 'acc_4c787cb712b1c8d'
                        api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
-                       etag = "test"
+                       response = requests.get('https://github.com/sumitpandey5559/ABC/tree/master/app/download.jpg',auth=(api_key, api_secret))
+                       send_message(sender_id, str(response.json()))
+		       '''
+		       etag = "test"
 	               filename = str(etag)+'.jpg'#Download file and store it with new name
 	               response = requests.get(attachment_link, stream=True)
 	               with open(filename, 'wb') as out_file:
@@ -124,11 +127,7 @@ def webhook():
 	               
 
 		       with open(join(dirname(__file__), filename), 'rb') as imag:
-        		       response = requests.get('https://github.com/sumitpandey5559/ABC/tree/master/app/download.jpg'% ,auth=(api_key, api_secret))
-                               send_message(sender_id, str(response.json()))
-		       
-                       
-                       '''
+
                        send_message(sender_id, abc)
                        files = [f for f in os.listdir('.') if os.path.isfile(f)]
                        for f in files:
