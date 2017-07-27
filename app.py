@@ -92,7 +92,7 @@ def webhook():
 		            "send attachment": send_attachment,
 			    "visit website": send_website,
 			    "visit products": send_products,
-			    "visit policies": send_plocies,
+			    "visit policies": send_policies,
                             "call": send_call,
                             "hi": send_bd,
                             "hello": send_bd,
