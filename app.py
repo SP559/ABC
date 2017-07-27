@@ -131,7 +131,7 @@ def webhook():
                        #print abc
                        #print('%s' % ab)
                        #send_message(sender_id, str(response.text))
-                       send_message(sender_id, "Attachment recieved, Ok!")
+                       send_message(sender_id, "Attachment recieved, we wiil contact you soon")
                        #send_message(sender_id, attachment_link )
                        '''
 		       api_key = 'acc_4c787cb712b1c8d'
@@ -175,7 +175,9 @@ def webhook():
                     pass
 
                 if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                    pass
+                     sender_id = messaging_event["sender"]["id"]
+		     payload = event.postback.payload
+		     send_message(sender_id, payload)
 
     return "ok", 200
 
@@ -279,8 +281,8 @@ def send_image(recipient_id):
                     },
                     {
                     "type":"postback",
-                    "payload":"http://2.bp.blogspot.com/-HwFBFUqIpGA/VnU4AkFS7SI/AAAAAAAADtg/K643chlBmEo/s1600/see%2Byou%2Bsoon.png",
-                    "title":"talk to our customer care, type-call"
+                    "payload":"call",
+                    "title":"Call us"
                     }
                     ]
                 }
@@ -350,12 +352,12 @@ def send_button(recipient_id):
                     {
                     "type":"web_url",
                     "url":"https://us.axa.com/axa-products/",
-                    "title":"Know about our insurance products"
+                    "title":"Know about products"
                     },
                     {
                     "type":"postback",
-                    "payload":"http://2.bp.blogspot.com/-HwFBFUqIpGA/VnU4AkFS7SI/AAAAAAAADtg/K643chlBmEo/s1600/see%2Byou%2Bsoon.png",
-                    "title":"talk to our customer care, type-call"
+                    "payload":"Call us",
+                    "title":"call"
                     }
                     ]
                 }
@@ -395,12 +397,12 @@ def send_generic(recipient_id):
                           {
                             "type":"web_url",
                             "url":"https://www.bharti-axalife.com/claims/know-your-claims",
-                            "title":"Know about our claim policy"
+                            "title":"Know about policies"
                           },
                           {
                             "type":"postback",
-                            "payload":"http://2.bp.blogspot.com/-HwFBFUqIpGA/VnU4AkFS7SI/AAAAAAAADtg/K643chlBmEo/s1600/see%2Byou%2Bsoon.png",
-                            "title":"Please send claim attachment, we wiil contact you soon"
+                            "payload":"ok",
+                            "title":"or send attachment"
                           }              
                         ]
                       }
@@ -434,17 +436,17 @@ def send_quick_reply(recipient_id):
               {
                 "content_type":"text",
                 "title":"axa",
-                "payload":"make me laugh"
+                "payload":"axa"
               },
               {
                 "content_type":"text",
                 "title":"insurance",
-                "payload":"make me laugh"
+                "payload":"insurance"
               },
               {
                 "content_type":"text",
                 "title":"insurance claim",
-                "payload":"make me laugh"
+                "payload":"insurance claim"
               },
             ]
           }
