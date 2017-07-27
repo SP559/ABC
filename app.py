@@ -275,7 +275,7 @@ def send_image(recipient_id):
                     {
                     "type":"web_url",
                     "url":"https://www.axa-bs.com",
-                    "title":"Visit website"
+                    "title":"Visit our website"
                     },
                     {
                     "type":"postback",
@@ -389,54 +389,18 @@ def send_generic(recipient_id):
                       {
                         "title":"AXA",
                         "item_url":"http://www.axa-bs.com",
-                        "image_url":"https://media.glassdoor.com/sqll/518746/axa-business-services-squarelogo-1424923973982.png",
-                        "subtitle":"Company you want to work with!",
+                        "image_url":"http://mckillican.com/wp-content/uploads/2013/03/We-Value-Customers_109948031_newfont-e1363801080226-300x240.jpg",
+                        "subtitle":"Hey happy to help with!",
                         "buttons":[
                           {
                             "type":"web_url",
-                            "url":"http://www.youtube.com",
-                            "title":"Enjoy"
+                            "url":"https://www.bharti-axalife.com/claims/know-your-claims",
+                            "title":"Know about our claim policy"
                           },
                           {
                             "type":"postback",
-                            "payload":"https://www.rainymood.com",
-                            "title":"peace"
-                          }              
-                        ]
-                      },
-                      {
-                        "title":"AXA",
-                        "item_url":"https://www.axa-bs.com",
-                        "image_url":"https://media.glassdoor.com/sqll/518746/axa-business-services-squarelogo-1424923973982.png",
-                        "subtitle":"Company you want to work with!",
-                        "buttons":[
-                          {
-                            "type":"web_url",
-                            "url":"https://www.youtube.com",
-                            "title":"Enjoy"
-                          },
-                          {
-                            "type":"postback",
-                            "payload":"https://www.rainymood.com",
-                            "title":"peace"
-                          }              
-                        ]
-                      },
-                      {
-                        "title":"AXA",
-                        "item_url":"https://www.axa-bs.com",
-                        "image_url":"https://media.glassdoor.com/sqll/518746/axa-business-services-squarelogo-1424923973982.png",
-                        "subtitle":"Company you want to work with!",
-                        "buttons":[
-                          {
-                            "type":"web_url",
-                            "url":"https://www.youtube.com",
-                            "title":"Enjoy"
-                          },
-                          {
-                            "type":"postback",
-                            "payload":"https://www.rainymood.com",
-                            "title":"peace"
+                            "payload":"http://2.bp.blogspot.com/-HwFBFUqIpGA/VnU4AkFS7SI/AAAAAAAADtg/K643chlBmEo/s1600/see%2Byou%2Bsoon.png",
+                            "title":"Please send claim attachment we wiil contact you soon"
                           }              
                         ]
                       }
