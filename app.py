@@ -398,7 +398,7 @@ def send_image(recipient_id):
         log(r.text)
 
 def send_call(recipient_id):
-    log("sending gif to {recipient}".format(recipient=recipient_id))
+    log("sending image to {recipient}".format(recipient=recipient_id))
 
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
@@ -410,22 +410,14 @@ def send_call(recipient_id):
         "recipient": {
             "id": recipient_id
         },
-        "message":{
-    "attachment":{
-      "type":"template",
-         "payload":{
-            "template_type":"button",
-            "text":"Talk to our customer care",
-            "buttons":[
-               {
-                  "type":"phone_number",
-                  "title":"Call",
-                  "payload":"+917872684490"
-               }
-            ]
-         }
-       }
-     }
+        "message": {
+            "attachment":{
+            "type":"phone_number",
+            "payload":{
+            "url": "+917872684490"
+                }
+            }
+        }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
