@@ -103,18 +103,18 @@ def webhook():
                              send_photo(sender_id)
 			     send_message(sender_id, "What is your query about?")
 			     send_quick_reply(sender_id)
-			     send_quick_reply(sender_id)
+			     send_call(sender_id)
                              return "0k", 200
 		        
 			elif(re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$',time.strftime("%d/%m/%Y"))):
                              send_message(sender_id, "Hi, What is your query about?")
                              send_quick_reply(sender_id)
-		             send_quick_reply(sender_id)
+		             send_call(sender_id)
                         else:
                             send_message(sender_id, str(english_bot.get_response(message_text)))
                             send_message(sender_id, "What is your query about?")
                             send_quick_reply(sender_id)
-			    send_quick_reply(sender_id)
+			    send_call(sender_id)
                             
                             #page.send(recipient_id, message_text, callback=send_text_callback, notification_type=NotificationType.REGULAR)
                    
