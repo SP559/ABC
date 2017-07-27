@@ -93,7 +93,7 @@ def webhook():
 			    "visit website": send_website,
 			    "visit products": send_products,
 			    "visit policies": send_policies,
-                            "call": send_call,
+                            "contact us": send_contact,
                             "hi": send_bd,
                             "hello": send_bd,
                             "hey": send_bd
@@ -379,7 +379,7 @@ def send_image(recipient_id):
             "quick_replies":[
               {
                 "content_type":"text",
-                "title":"call",
+                "title":"contact us",
                 "payload":"axa"
               },
               {
@@ -395,8 +395,9 @@ def send_image(recipient_id):
         log(r.status_code)
         log(r.text)
 
-def send_call(recipient_id):
-    log("sending image to {recipient}".format(recipient=recipient_id))
+def send_contact(recipient_id, message_text="please mail us at-sumitpandey559@gmail.com or call-+917872684490"):
+
+    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
@@ -409,12 +410,7 @@ def send_call(recipient_id):
             "id": recipient_id
         },
         "message": {
-            "attachment":{
-            "type":"phone_number",
-            "payload":{
-            "text": "+917872684490"
-                }
-            }
+            "text": message_text
         }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
@@ -440,7 +436,7 @@ def send_button(recipient_id):
             "quick_replies":[
               {
                 "content_type":"text",
-                "title":"call",
+                "title":"contact us",
                 "payload":"axa"
               },
               {
