@@ -412,7 +412,7 @@ def send_call(recipient_id):
             "attachment":{
             "type":"phone_number",
             "payload":{
-            "url": "+917872684490"
+            "text": "+917872684490"
                 }
             }
         }
