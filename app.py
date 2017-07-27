@@ -134,7 +134,7 @@ def webhook():
                        send_message(sender_id, attachment_link )
                        api_key = 'acc_4c787cb712b1c8d'
                        api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
-		       send_message(sender_id, file_get_contents(attachment_link))
+		       #send_message(sender_id, file_get_contents(attachment_link))
                        '''
 		       response = requests.get('https://github.com/sumitpandey5559/ABC/tree/master/app/download.jpg',auth=(api_key, api_secret))
                        send_message(sender_id, str(response.json()))
