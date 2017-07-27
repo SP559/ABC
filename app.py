@@ -103,16 +103,20 @@ def webhook():
 
                         if message_text in special_keywords:
                             special_keywords[message_text](sender_id) # activate the function
-                            send_message(sender_id, "Ok!")
                             return "ok", 200
                         
                         elif ((time.strftime("%d/%m/%Y"))==message_text):
                              send_photo(sender_id)
+			     send_message(sender_id, "What is your query about?")
                              return "0k", 200
+		        
+			elif(re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$',time.strftime("%d/%m/%Y"))):
+                             send_message(sender_id, "Hi, What is your query about?")
+     
                         else:
                             send_message(sender_id, str(english_bot.get_response(message_text)))
                             send_quick_reply(sender_id)
-                            
+                            send_message(sender_id, "What is your query about?")
                                
                             
                             #page.send(recipient_id, message_text, callback=send_text_callback, notification_type=NotificationType.REGULAR)
