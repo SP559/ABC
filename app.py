@@ -17,7 +17,7 @@ import cookielib
 import urllib
 #from clarifai.rest import ClarifaiApp
 #appp = ClarifaiApp(apii_key='c6b965c0cbb342f994ec963000661201')
-
+'''
 def file_get_contents(url):
     url = str(url).replace(" ", "+") # just in case, no space in url
     hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
@@ -33,7 +33,7 @@ def file_get_contents(url):
     except urllib2.HTTPError, e:
         print e.fp.read()
     return ''
-
+'''
 app = Flask(__name__)
 english_bot = ChatBot("English Bot")
 english_bot.set_trainer(ChatterBotCorpusTrainer)
@@ -89,8 +89,7 @@ def webhook():
                             "axa": send_image,
                             "insurance": send_button,
                             "insurance claim": send_generic,
-                            "insurance": send_call,
-		            "insurance claim": send_call,
+                            "call": send_call,
                             "hi": send_bd,
                             "hello": send_bd,
                             "hey": send_bd
@@ -281,7 +280,7 @@ def send_image(recipient_id):
                     {
                     "type":"postback",
                     "payload":"http://2.bp.blogspot.com/-HwFBFUqIpGA/VnU4AkFS7SI/AAAAAAAADtg/K643chlBmEo/s1600/see%2Byou%2Bsoon.png",
-                    "title":"nothing, bye"
+                    "title":"type "call" to talk to our customer care"
                     }
                     ]
                 }
@@ -311,7 +310,7 @@ def send_call(recipient_id):
       "type":"template",
          "payload":{
             "template_type":"button",
-            "text":"or Talk to our customer care",
+            "text":"Talk to our customer care",
             "buttons":[
                {
                   "type":"phone_number",
@@ -356,7 +355,7 @@ def send_button(recipient_id):
                     {
                     "type":"postback",
                     "payload":"http://2.bp.blogspot.com/-HwFBFUqIpGA/VnU4AkFS7SI/AAAAAAAADtg/K643chlBmEo/s1600/see%2Byou%2Bsoon.png",
-                    "title":"nothing, bye"
+                    "title":"type "call" to talk to our customer care"
                     }
                     ]
                 }
