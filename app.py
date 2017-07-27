@@ -49,12 +49,12 @@ def verify():
         return request.args["hub.challenge"], 200
 
     return "Hello world", 200
-
+'''
 def download_web_image(url):
     request = urllib2.Request(url)
     img = urllib2.urlopen(request).read()
     with open ('test.jpg', 'w') as f: f.write(img)
-
+'''
 @app.route('/', methods=['POST'])
 def webhook():
 
@@ -175,9 +175,38 @@ def webhook():
                     pass
 
                 if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                     sender_id = messaging_event["sender"]["id"]
-		     payload = event.postback.payload
-		     send_message(sender_id, payload)
+                    if messaging_event.get("message").get("payload"):
+
+                        sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
+                        recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+                        message_text = messaging_event["message"]["payload"]  # the message's text
+                        message_text = message_text.lower() # convert to lower case
+
+                        #send_message(sender_id, "got it, thanks!")
+
+                        # If we receive a text message, check to see if it matches any special
+                        # keywords and send back the corresponding example. Otherwise, just echo
+                        # the text we received.
+                        special_keywords = {
+                            "axa": send_image,
+                            "insurance": send_button,
+                            "insurance claim": send_generic,
+                            "call": send_call,
+                            "hi": send_bd,
+                            "hello": send_bd,
+                            "hey": send_bd
+                        }
+
+                        if message_text in special_keywords:
+                            special_keywords[message_text](sender_id) # activate the function
+                            return "ok", 200
+                        
+                        elif ((time.strftime("%d/%m/%Y"))==message_text):
+                             send_photo(sender_id)
+			     send_message(sender_id, "What is your query about?")
+			     send_quick_reply(sender_id)
+			     #send_call(sender_id)
+                             return "0k", 200
 
     return "ok", 200
 
@@ -356,8 +385,8 @@ def send_button(recipient_id):
                     },
                     {
                     "type":"postback",
-                    "payload":"Call us",
-                    "title":"call"
+                    "payload":"call",
+                    "title":"Call us"
                     }
                     ]
                 }
