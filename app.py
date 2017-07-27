@@ -280,7 +280,7 @@ def send_image(recipient_id):
                     {
                     "type":"postback",
                     "payload":"http://2.bp.blogspot.com/-HwFBFUqIpGA/VnU4AkFS7SI/AAAAAAAADtg/K643chlBmEo/s1600/see%2Byou%2Bsoon.png",
-                    "title":"type "call" to talk to our customer care"
+                    "title":"talk to our customer care, type-call"
                     }
                     ]
                 }
@@ -355,7 +355,7 @@ def send_button(recipient_id):
                     {
                     "type":"postback",
                     "payload":"http://2.bp.blogspot.com/-HwFBFUqIpGA/VnU4AkFS7SI/AAAAAAAADtg/K643chlBmEo/s1600/see%2Byou%2Bsoon.png",
-                    "title":"type "call" to talk to our customer care"
+                    "title":"talk to our customer care, type-call"
                     }
                     ]
                 }
@@ -390,7 +390,7 @@ def send_generic(recipient_id):
                         "title":"AXA",
                         "item_url":"http://www.axa-bs.com",
                         "image_url":"http://mckillican.com/wp-content/uploads/2013/03/We-Value-Customers_109948031_newfont-e1363801080226-300x240.jpg",
-                        "subtitle":"Hey happy to help with!",
+                        "subtitle":"Hey, happy to help with!",
                         "buttons":[
                           {
                             "type":"web_url",
@@ -400,7 +400,7 @@ def send_generic(recipient_id):
                           {
                             "type":"postback",
                             "payload":"http://2.bp.blogspot.com/-HwFBFUqIpGA/VnU4AkFS7SI/AAAAAAAADtg/K643chlBmEo/s1600/see%2Byou%2Bsoon.png",
-                            "title":"Please send claim attachment we wiil contact you soon"
+                            "title":"Please send claim attachment, we wiil contact you soon"
                           }              
                         ]
                       }
