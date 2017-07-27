@@ -121,7 +121,9 @@ def webhook():
                     if messaging_event["message"].get("attachments"):
                        sender_id = messaging_event["sender"]["id"] 
                        attachment_link = messaging_event["message"]["attachments"][0]["payload"]["url"]
-                       #download(attachment_link)
+		       send_message(sender_id, "Attachment recieved, we wiil contact you soon")
+                       '''
+		       #download(attachment_link)
                        #app = ClarifaiApp(api_key= 'c6b965c0cbb342f994ec963000661201')
                        #ab=type((app.tag_urls(['https://samples.clarifai.com/metro-north.jpg'])))
                        #abc=str((app.tag_urls(['%s'% attachment_link])))
@@ -131,9 +133,7 @@ def webhook():
                        #print abc
                        #print('%s' % ab)
                        #send_message(sender_id, str(response.text))
-                       send_message(sender_id, "Attachment recieved, we wiil contact you soon")
                        #send_message(sender_id, attachment_link )
-                       '''
 		       api_key = 'acc_4c787cb712b1c8d'
                        api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
 		       #send_message(sender_id, file_get_contents(attachment_link))
@@ -159,14 +159,14 @@ def webhook():
                            shutil.copyfileobj(response1.raw, out_file)
                        del response1
                        #send_message(sender_id, str(response.text))
-                       '''
+                      
                        # NOT WORKIN ---
                        #img = urllib2.urlopen(img_url)
                        #localFile = open(os.getcwd()+file_name , 'wb')
                        #localFile = open("https://github.com/sumitpandey5559/ABC/tree/master/"+file_name , 'wb')
                        #localFile.write(img.read())
                        #localFile.close()
-                       
+                       '''  
                      
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
@@ -175,38 +175,7 @@ def webhook():
                     pass
 
                 if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                    if messaging_event.get("message").get("payload"):
-
-                        sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
-                        recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                        message_text = messaging_event["message"]["payload"]  # the message's text
-                        message_text = message_text.lower() # convert to lower case
-
-                        #send_message(sender_id, "got it, thanks!")
-
-                        # If we receive a text message, check to see if it matches any special
-                        # keywords and send back the corresponding example. Otherwise, just echo
-                        # the text we received.
-                        special_keywords = {
-                            "axa": send_image,
-                            "insurance": send_button,
-                            "insurance claim": send_generic,
-                            "call": send_call,
-                            "hi": send_bd,
-                            "hello": send_bd,
-                            "hey": send_bd
-                        }
-
-                        if message_text in special_keywords:
-                            special_keywords[message_text](sender_id) # activate the function
-                            return "ok", 200
-                        
-                        elif ((time.strftime("%d/%m/%Y"))==message_text):
-                             send_photo(sender_id)
-			     send_message(sender_id, "What is your query about?")
-			     send_quick_reply(sender_id)
-			     #send_call(sender_id)
-                             return "0k", 200
+                    pass
 
     return "ok", 200
 
@@ -301,17 +270,12 @@ def send_image(recipient_id):
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text":"What do you want to do next?",
+                    "text":"Type call to call us",
                     "buttons":[
                     {
                     "type":"web_url",
                     "url":"https://www.axa-bs.com",
                     "title":"Visit our website"
-                    },
-                    {
-                    "type":"postback",
-                    "payload":"call",
-                    "title":"Call us"
                     }
                     ]
                 }
@@ -376,17 +340,12 @@ def send_button(recipient_id):
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text":"What do you want to do next?",
+                    "text":"Type call to call us",
                     "buttons":[
                     {
                     "type":"web_url",
                     "url":"https://us.axa.com/axa-products/",
                     "title":"Know about products"
-                    },
-                    {
-                    "type":"postback",
-                    "payload":"call",
-                    "title":"Call us"
                     }
                     ]
                 }
@@ -418,20 +377,15 @@ def send_generic(recipient_id):
                     "template_type":"generic",
                     "elements":[
                       {
-                        "title":"AXA",
+                        "title":"Send the attachment",
                         "item_url":"http://www.axa-bs.com",
                         "image_url":"http://mckillican.com/wp-content/uploads/2013/03/We-Value-Customers_109948031_newfont-e1363801080226-300x240.jpg",
-                        "subtitle":"Hey, happy to help with!",
+                        "subtitle":"We will contact you soon!",
                         "buttons":[
                           {
                             "type":"web_url",
                             "url":"https://www.bharti-axalife.com/claims/know-your-claims",
                             "title":"Know about policies"
-                          },
-                          {
-                            "type":"postback",
-                            "payload":"ok",
-                            "title":"or send attachment"
                           }              
                         ]
                       }
