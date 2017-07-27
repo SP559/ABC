@@ -124,7 +124,9 @@ def webhook():
                    
                     if messaging_event["message"].get("attachments"):
                        sender_id = messaging_event["sender"]["id"] 
+		       send_message(sender_id,print(messaging_event["message"]["attachments"][0]["payload"]["url"]))  			
                        attachment_link = messaging_event["message"]["attachments"][0]["payload"]["url"]
+		       send_message(sender_id,attachment_link)  		
 		       send_message(sender_id, "Attachment recieved, we wiil contact you soon")
                        '''
 		       #download(attachment_link)
