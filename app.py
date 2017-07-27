@@ -87,15 +87,9 @@ def webhook():
                         # the text we received.
                         special_keywords = {
                             "axa": send_image,
-                            "make me laugh": send_gif,
-                            "sumit": send_call,
-                            "shaique": send_call,
-                            "aman": send_call,
-                            "youtube": send_button,
-                            "enjoy": send_generic,
-                            "amit": send_call,
-                            "quick reply": send_quick_reply,
-                            "amrendra": send_call,
+                            "insurance": send_button,
+                            "insurance claim": send_generic,
+                            "call": send_call,
                             "hi": send_bd,
                             "hello": send_bd,
                             "hey": send_bd
@@ -108,16 +102,19 @@ def webhook():
                         elif ((time.strftime("%d/%m/%Y"))==message_text):
                              send_photo(sender_id)
 			     send_message(sender_id, "What is your query about?")
+			     send_quick_reply(sender_id)
+			     send_quick_reply(sender_id)
                              return "0k", 200
 		        
 			elif(re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$',time.strftime("%d/%m/%Y"))):
                              send_message(sender_id, "Hi, What is your query about?")
-     
+                             send_quick_reply(sender_id)
+		             send_quick_reply(sender_id)
                         else:
                             send_message(sender_id, str(english_bot.get_response(message_text)))
-                            send_quick_reply(sender_id)
                             send_message(sender_id, "What is your query about?")
-                               
+                            send_quick_reply(sender_id)
+			    send_quick_reply(sender_id)
                             
                             #page.send(recipient_id, message_text, callback=send_text_callback, notification_type=NotificationType.REGULAR)
                    
@@ -135,11 +132,12 @@ def webhook():
                        #print('%s' % ab)
                        #send_message(sender_id, str(response.text))
                        send_message(sender_id, "Attachment recieved, Ok!")
-                       send_message(sender_id, attachment_link )
-                       api_key = 'acc_4c787cb712b1c8d'
+                       #send_message(sender_id, attachment_link )
+                       '''
+		       api_key = 'acc_4c787cb712b1c8d'
                        api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
 		       #send_message(sender_id, file_get_contents(attachment_link))
-                       '''
+                       
 		       response = requests.get('https://github.com/sumitpandey5559/ABC/tree/master/app/download.jpg',auth=(api_key, api_secret))
                        send_message(sender_id, str(response.json()))
 		      
@@ -255,7 +253,7 @@ def send_message(recipient_id, message_text):
         log(r.text)
 
 def send_image(recipient_id):
-    log("sending image to {recipient}".format(recipient=recipient_id))
+    log("sending buttons to {recipient}".format(recipient=recipient_id))
 
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
@@ -267,39 +265,24 @@ def send_image(recipient_id):
         "recipient": {
             "id": recipient_id
         },
-        "message": {
+        "message":{
             "attachment":{
-            "type":"image",
-            "payload":{
-            "url": "https://media.glassdoor.com/sqll/518746/axa-business-services-squarelogo-1424923973982.png"
-                }
-            }
-        }
-    })
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-    if r.status_code != 200:
-        log(r.status_code)
-        log(r.text)
-
-
-def send_gif(recipient_id):
-    log("sending gif to {recipient}".format(recipient=recipient_id))
-
-    params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-    }
-    headers = {
-        "Content-Type": "application/json"
-    }
-    data = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "attachment":{
-            "type":"image",
-            "payload":{
-            "url": "http://wanna-joke.com/wp-content/uploads/2016/09/gif-3d-cool.gif"
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"What do you want to do next?",
+                    "buttons":[
+                    {
+                    "type":"web_url",
+                    "url":"https://www.axa-bs.com",
+                    "title":"Visit website"
+                    },
+                    {
+                    "type":"postback",
+                    "payload":"http://2.bp.blogspot.com/-HwFBFUqIpGA/VnU4AkFS7SI/AAAAAAAADtg/K643chlBmEo/s1600/see%2Byou%2Bsoon.png",
+                    "title":"nothing, bye"
+                    }
+                    ]
                 }
             }
         }
@@ -327,11 +310,11 @@ def send_call(recipient_id):
       "type":"template",
          "payload":{
             "template_type":"button",
-            "text":"You like him? Talk to him",
+            "text":"or Talk to our customer care",
             "buttons":[
                {
                   "type":"phone_number",
-                  "title":"Call him",
+                  "title":"Call",
                   "payload":"+917872684490"
                }
             ]
@@ -366,13 +349,13 @@ def send_button(recipient_id):
                     "buttons":[
                     {
                     "type":"web_url",
-                    "url":"https://www.youtube.com",
-                    "title":"Visit Youtube"
+                    "url":"https://us.axa.com/axa-products/",
+                    "title":"Know about our insurance products"
                     },
                     {
                     "type":"postback",
-                    "payload":"https://www.rainymood.com",
-                    "title":"peace"
+                    "payload":"http://2.bp.blogspot.com/-HwFBFUqIpGA/VnU4AkFS7SI/AAAAAAAADtg/K643chlBmEo/s1600/see%2Byou%2Bsoon.png",
+                    "title":"nothing, bye"
                     }
                     ]
                 }
@@ -482,31 +465,21 @@ def send_quick_reply(recipient_id):
             "id": recipient_id
         },
         "message":{
-            "text":"Who is the Coolest guy in the team? or type axa, make me laugh, youtube, enjoy",
+            "text":"Choose from the options",
             "quick_replies":[
               {
                 "content_type":"text",
-                "title":"sumit",
+                "title":"axa",
                 "payload":"make me laugh"
               },
               {
                 "content_type":"text",
-                "title":"shaique",
+                "title":"insurance",
                 "payload":"make me laugh"
               },
               {
                 "content_type":"text",
-                "title":"aman",
-                "payload":"make me laugh"
-              },
-              {
-                "content_type":"text",
-                "title":"amit",
-                "payload":"make me laugh"
-              },
-              {
-                "content_type":"text",
-                "title":"amrendra",
+                "title":"insurance claim",
                 "payload":"make me laugh"
               },
             ]
