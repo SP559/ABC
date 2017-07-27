@@ -89,6 +89,10 @@ def webhook():
                             "axa": send_image,
                             "insurance": send_button,
                             "insurance claim": send_generic,
+		            "send attachment": send_attachment,
+			    "visit website": send_website,
+			    "visit products": send_products,
+			    "visit policies": send_plocies,
                             "call": send_call,
                             "hi": send_bd,
                             "hello": send_bd,
@@ -179,6 +183,88 @@ def webhook():
 
     return "ok", 200
 
+def send_website(recipient_id):
+    log("sending image to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment":{
+            "type":"web_url",
+            "payload":{
+            "url": "https://axa-bs.com/"
+                }
+            }
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+def send_products(recipient_id):
+    log("sending image to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment":{
+            "type":"web_url",
+            "payload":{
+            "url": "https://us.axa.com/axa-products/"
+                }
+            }
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+def send_policies(recipient_id):
+    log("sending image to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment":{
+            "type":"web_url",
+            "payload":{
+            "url": "https://www.bharti-axalife.com/claims/faqs"
+                }
+            }
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+	
+	
 def send_photo(recipient_id):
     log("sending image to {recipient}".format(recipient=recipient_id))
 
@@ -228,7 +314,30 @@ def send_bd(recipient_id, message_text="Hi! When is your birthday, enter in dd/m
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
-        
+ 
+def send_attachment(recipient_id, message_text="please upload attachment"):
+
+    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "text": message_text
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
 def send_message(recipient_id, message_text):
 
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
@@ -253,7 +362,7 @@ def send_message(recipient_id, message_text):
         log(r.text)
 
 def send_image(recipient_id):
-    log("sending buttons to {recipient}".format(recipient=recipient_id))
+    log("sending quick reply to {recipient}".format(recipient=recipient_id))
 
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
@@ -266,21 +375,20 @@ def send_image(recipient_id):
             "id": recipient_id
         },
         "message":{
-            "attachment":{
-                "type":"template",
-                "payload":{
-                    "template_type":"button",
-                    "text":"Type call to call us",
-                    "buttons":[
-                    {
-                    "type":"web_url",
-                    "url":"https://www.axa-bs.com",
-                    "title":"Visit our website"
-                    }
-                    ]
-                }
-            }
-        }
+            "text":"Choose from the options",
+            "quick_replies":[
+              {
+                "content_type":"text",
+                "title":"call",
+                "payload":"axa"
+              },
+              {
+                "content_type":"text",
+                "title":"visit website",
+                "payload":"insurance claim"
+              },
+            ]
+          }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
@@ -323,7 +431,7 @@ def send_call(recipient_id):
         log(r.text)
 
 def send_button(recipient_id):
-    log("sending buttons to {recipient}".format(recipient=recipient_id))
+    log("sending quick reply to {recipient}".format(recipient=recipient_id))
 
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
@@ -336,21 +444,20 @@ def send_button(recipient_id):
             "id": recipient_id
         },
         "message":{
-            "attachment":{
-                "type":"template",
-                "payload":{
-                    "template_type":"button",
-                    "text":"Type call to call us",
-                    "buttons":[
-                    {
-                    "type":"web_url",
-                    "url":"https://us.axa.com/axa-products/",
-                    "title":"Know about products"
-                    }
-                    ]
-                }
-            }
-        }
+            "text":"Choose from the options",
+            "quick_replies":[
+              {
+                "content_type":"text",
+                "title":"call",
+                "payload":"axa"
+              },
+              {
+                "content_type":"text",
+                "title":"visit products",
+                "payload":"insurance claim"
+              },
+            ]
+          }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
@@ -358,7 +465,7 @@ def send_button(recipient_id):
         log(r.text)
 
 def send_generic(recipient_id):
-    log("sending generic template to {recipient}".format(recipient=recipient_id))
+    log("sending quick reply to {recipient}".format(recipient=recipient_id))
 
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
@@ -371,28 +478,20 @@ def send_generic(recipient_id):
             "id": recipient_id
         },
         "message":{
-            "attachment":{
-                "type":"template",
-                "payload":{
-                    "template_type":"generic",
-                    "elements":[
-                      {
-                        "title":"Send the attachment",
-                        "item_url":"http://www.axa-bs.com",
-                        "image_url":"http://mckillican.com/wp-content/uploads/2013/03/We-Value-Customers_109948031_newfont-e1363801080226-300x240.jpg",
-                        "subtitle":"We will contact you soon!",
-                        "buttons":[
-                          {
-                            "type":"web_url",
-                            "url":"https://www.bharti-axalife.com/claims/know-your-claims",
-                            "title":"Know about policies"
-                          }              
-                        ]
-                      }
-                    ]
-                }
-            }
-        }
+            "text":"Choose from the options",
+            "quick_replies":[
+              {
+                "content_type":"text",
+                "title":"send attachment",
+                "payload":"axa"
+              },
+              {
+                "content_type":"text",
+                "title":"visit policies",
+                "payload":"insurance claim"
+              },
+            ]
+          }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
