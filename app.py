@@ -75,16 +75,28 @@ def received_message(event):
         message_text = event["message"]["text"]
 
         # parse message_text and give appropriate response   
-        if message_text == 'hi':
-            send_first_reply(sender_id)
+        if message_text == 'image':
+            send_image_message(sender_id)
 
-        elif message_text == 'hey':
+        elif message_text == 'file':
+            send_file_message(sender_id)
+	
+        elif message_text == 'hi':
             send_first_reply(sender_id)
-
-        elif message_text == 'hello':
+	
+	elif message_text == 'hey':
             send_first_reply(sender_id)
+	
+	elif message_text == 'hello':
+            send_first_reply(sender_id)
+	
+        elif message_text == 'audio':
+            send_audio_message(sender_id)
 
-        elif message_text == 'axa':
+        elif message_text == 'video':
+            send_video_message(sender_id)
+	
+	elif message_text == 'axa':
             send_share_message(sender_id)
 
         elif message_text == 'insurance':
@@ -92,15 +104,9 @@ def received_message(event):
 
         elif message_text == 'insurance claim':
             send_generic_message(sender_id)
- 
-        elif ((time.strftime("%d/%m/%Y"))==message_text):
-              send_image_message(sender_id)
-	      send_quick_reply(sender_id)
-                
-        elif(re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$',time.strftime("%d/%m/%Y"))):
-              send_quick_reply(sender_id)
 
         else: # default case
+            send_text_message(sender_id, "Echo: " + message_text)
             send_text_message(sender_id, str(english_bot.get_response(message_text)))
     elif "attachments" in event["message"]:
         message_attachments = event["message"]["attachments"]   
@@ -124,77 +130,6 @@ def send_text_message(recipient_id, message_text):
 
     call_send_api(message_data)
 
-
-def send_generic_message(recipient_id):
-
-    message_data = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [{
-                        "title": "AXA",
-                        "subtitle": "Hey, we care for you..",
-                        "item_url": "https://www.axa-bs.com/",               
-                        "image_url": "http://www.pme-dz.com/wp-content/uploads/2013/05/axa-assurance-megeve-haute-savoie-mont-blanc-alpes-808.png",
-                        "buttons": [{
-                            "type": "web_url",
-                            "url": "https://www.axa-bs.com/",
-                            "title": "Read our policies"
-                        }, {
-                            "type": "postback",
-                            "title": "Upload attachment",
-                            "payload": "Payload for first bubble",
-                        }],
-                    }, {
-                        "title": "AXA",
-                        "subtitle": "Hey, we care for you..",
-                        "item_url": "https://www.axa-bs.com/",               
-                        "image_url": "http://www.pme-dz.com/wp-content/uploads/2013/05/axa-assurance-megeve-haute-savoie-mont-blanc-alpes-808.png",
-                        "buttons": [{
-                            "type": "web_url",
-                            "url": "https://www.axa-bs.com/",
-                            "title": "Read our policies"
-                        }, {
-                            "type": "postback",
-                            "title": "Upload attachment",
-                            "payload": "Payload for first bubble",
-                        }]
-                    }]
-                }
-            }
-        }
-    })
-
-    log("sending template with choices to {recipient}: ".format(recipient=recipient_id))
-
-    call_send_api(message_data)
-    
-
-def send_image_message(recipient_id):
-
-    message_data = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "attachment": {
-                "type":"image",
-                "payload":{
-                    "url":"http://www.happybirthday.quotesms.com/images/latest-happy-birthday-images.jpg"
-                }
-            }
-        }
-    })
-
-    log("sending image to {recipient}: ".format(recipient=recipient_id))
-
-    call_send_api(message_data)
-    
 def send_first_reply(recipient_id):
     
     message_data = json.dumps({
@@ -256,6 +191,139 @@ def send_quick_reply(recipient_id):
     log("sending file to {recipient}: ".format(recipient=recipient_id))
 
     call_send_api(message_data)
+	
+def send_generic_message(recipient_id):
+
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [{
+                        "title": "rift",
+                        "subtitle": "Next-generation virtual reality",
+                        "item_url": "https://www.oculus.com/en-us/rift/",               
+                        "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "https://www.oculus.com/en-us/rift/",
+                            "title": "Open Web URL"
+                        }, {
+                            "type": "postback",
+                            "title": "Call Postback",
+                            "payload": "Payload for first bubble",
+                        }],
+                    }, {
+                        "title": "touch",
+                        "subtitle": "Your Hands, Now in VR",
+                        "item_url": "https://www.oculus.com/en-us/touch/",               
+                        "image_url": "http://messengerdemo.parseapp.com/img/touch.png",
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "https://www.oculus.com/en-us/touch/",
+                            "title": "Open Web URL"
+                        }, {
+                            "type": "postback",
+                            "title": "Call Postback",
+                            "payload": "Payload for second bubble",
+                        }]
+                    }]
+                }
+            }
+        }
+    })
+
+    log("sending template with choices to {recipient}: ".format(recipient=recipient_id))
+
+    call_send_api(message_data)
+    
+
+def send_image_message(recipient_id):
+
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type":"image",
+                "payload":{
+                    "url":"http://i.imgur.com/76rJlO9.jpg"
+                }
+            }
+        }
+    })
+
+    log("sending image to {recipient}: ".format(recipient=recipient_id))
+
+    call_send_api(message_data)
+
+
+def send_file_message(recipient_id):
+
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type":"file",
+                "payload":{
+                    "url":"http://ee.usc.edu/~redekopp/ee355/EE355_Syllabus.pdf"
+                }
+            }
+        }
+    })
+
+    log("sending file to {recipient}: ".format(recipient=recipient_id))
+
+    call_send_api(message_data)
+
+
+def send_audio_message(recipient_id):
+
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type":"audio",
+                "payload":{
+                    "url":"http://www.stephaniequinn.com/Music/Allegro%20from%20Duet%20in%20C%20Major.mp3"
+                }
+            }
+        }
+    })
+
+    log("sending audio to {recipient}: ".format(recipient=recipient_id))
+
+    call_send_api(message_data)
+
+
+def send_video_message(recipient_id):
+
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type":"video",
+                "payload":{
+                    "url":"http://techslides.com/demos/sample-videos/small.mp4"
+                }
+            }
+        }
+    })
+
+    log("sending video to {recipient}: ".format(recipient=recipient_id))
+
+    call_send_api(message_data)
 
 
 def send_button_message(recipient_id):
@@ -269,16 +337,16 @@ def send_button_message(recipient_id):
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text":"Welcome to AXA",
+                    "text":"What do you want to do next?",
                     "buttons":[
                     {
                         "type":"web_url",
-                        "url":"https://www.axa-bs.com",
-                        "title":"Visit our website"
+                        "url":"https://www.google.com",
+                        "title":"Google"
                     },
                     {
                         "type":"postback",
-                        "title":"Get Started",
+                        "title":"Call Postback",
                         "payload":"Payload for send_button_message()"
                     }
                     ]
@@ -306,9 +374,9 @@ def send_share_message(recipient_id):
                     "template_type":"generic",
                     "elements":[
                     {
-                        "title":"AXA",
-                        "subtitle":"Hey, Share about AXA",
-                        "image_url":"http://www.pme-dz.com/wp-content/uploads/2013/05/axa-assurance-megeve-haute-savoie-mont-blanc-alpes-808.png",
+                        "title":"Reddit link",
+                        "subtitle":"Something funny or interesting",
+                        "image_url":"https://pbs.twimg.com/profile_images/667516091330002944/wOaS8FKS.png",
                         "buttons":[
                         {
                             "type":"element_share"
@@ -340,10 +408,10 @@ def received_postback(event):
 
     if payload == 'Get Started':
         # Get Started button was pressed
-        send_text_message(sender_id, "Welcome to AXA! Type- (hi), (hello) or (hey) or Shoot your query.")
+        send_text_message(sender_id, "Welcome to SoCal Echo Bot! Anything you type will be echoed back to you, except for some keywords.")
     else:
         # Notify sender that postback was successful
-        send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query")
+        send_text_message(sender_id, "Postback called")
 
 
 def call_send_api(message_data):
@@ -365,6 +433,58 @@ def log(message):  # simple wrapper for logging to stdout on heroku
     print str(message)
     sys.stdout.flush()
 
+
+# @app.route('/', methods=['POST'])
+# def set_greeting_text():
+#     # Sets greeting text on welcome screen
+#     message_data = json.dumps({
+#         "setting_type":"greeting",
+#         "greeting":{
+#             "text":"Hi {{user_first_name}}, welcome to this bot."
+#         }
+#     })
+#     params = {
+#         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+#     }
+#     headers = {
+#         "Content-Type": "application/json"
+#     }
+    
+#     r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=message_data)
+#     if r.status_code != 200:
+#         log("setting greeting text")
+#         log(r.status_code)
+#         log(r.text)
+
+#     return "ok", 200
+
+    
+# @app.route('/', methods=['POST'])
+# def set_get_started_button():
+#     # Sets get started button on welcome screen
+#     message_data = json.dumps({
+#         "setting_type":"call_to_actions",
+#         "thread_state":"new_thread",
+#         "call_to_actions":[
+#         {
+#             "payload":"Get Started"
+#         }
+#         ]
+#     })
+#     params = {
+#         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+#     }
+#     headers = {
+#         "Content-Type": "application/json"
+#     }
+    
+#     r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=message_data)
+#     if r.status_code != 200:
+#         log("setting get started button")
+#         log(r.status_code)
+#         log(r.text)
+
+#     return "ok", 200
 
 
 if __name__ == '__main__':
