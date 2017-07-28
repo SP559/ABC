@@ -15,25 +15,7 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 import urllib2
 import cookielib
 import urllib
-#from clarifai.rest import ClarifaiApp
-#appp = ClarifaiApp(apii_key='c6b965c0cbb342f994ec963000661201')
-'''
-def file_get_contents(url):
-    url = str(url).replace(" ", "+") # just in case, no space in url
-    hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
-           'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-           'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
-           'Accept-Encoding': 'none',
-           'Accept-Language': 'en-US,en;q=0.8',
-           'Connection': 'keep-alive'}
-    req = urllib2.Request(url, headers=hdr)
-    try:
-        page = urllib2.urlopen(req)
-        return page.read()
-    except urllib2.HTTPError, e:
-        print e.fp.read()
-    return ''
-'''
+
 app = Flask(__name__)
 english_bot = ChatBot("English Bot")
 english_bot.set_trainer(ChatterBotCorpusTrainer)
@@ -49,12 +31,7 @@ def verify():
         return request.args["hub.challenge"], 200
 
     return "Hello world", 200
-'''
-def download_web_image(url):
-    request = urllib2.Request(url)
-    img = urllib2.urlopen(request).read()
-    with open ('test.jpg', 'w') as f: f.write(img)
-'''
+
 @app.route('/', methods=['POST'])
 def webhook():
 
@@ -126,51 +103,8 @@ def webhook():
                        sender_id = messaging_event["sender"]["id"] 
 		       attachment_link = messaging_event["message"]["attachments"][0]["payload"]["url"]		
 		       send_message(sender_id, "Attachment recieved, we wiil contact you soon")
-                       '''
-		       #download(attachment_link)
-                       #app = ClarifaiApp(api_key= 'c6b965c0cbb342f994ec963000661201')
-                       #ab=type((app.tag_urls(['https://samples.clarifai.com/metro-north.jpg'])))
-                       #abc=str((app.tag_urls(['%s'% attachment_link])))
-                       #img_url = attachment_link
-                       #file_name = "test.jpg"
-                       #send_message(sender_id, os.getcwd())
-                       #print abc
-                       #print('%s' % ab)
-                       #send_message(sender_id, str(response.text))
-                       #send_message(sender_id, attachment_link )
-		       api_key = 'acc_4c787cb712b1c8d'
-                       api_secret = '30b7b6358e8443deac9dc509d0e62ac6'
-		       #send_message(sender_id, file_get_contents(attachment_link))
                        
-		       response = requests.get('https://github.com/sumitpandey5559/ABC/tree/master/app/download.jpg',auth=(api_key, api_secret))
-                       send_message(sender_id, str(response.json()))
-		      
-		       etag = "test"
-	               filename = str(etag)+'.jpg'#Download file and store it with new name
-	               response = requests.get(attachment_link, stream=True)
-	               with open(filename, 'wb') as out_file:
-    			        shutil.copyfileobj(response.raw, out_file)
-	               
 
-		       with open(join(dirname(__file__), filename), 'rb') as imag:
-
-                       send_message(sender_id, abc)
-                       files = [f for f in os.listdir('.') if os.path.isfile(f)]
-                       for f in files:
-                           send_message(sender_id, f)
-                       response1 = requests.get(attachment_link, stream=True)
-                       with open('img.png', 'wb') as out_file:
-                           shutil.copyfileobj(response1.raw, out_file)
-                       del response1
-                       #send_message(sender_id, str(response.text))
-                      
-                       # NOT WORKIN ---
-                       #img = urllib2.urlopen(img_url)
-                       #localFile = open(os.getcwd()+file_name , 'wb')
-                       #localFile = open("https://github.com/sumitpandey5559/ABC/tree/master/"+file_name , 'wb')
-                       #localFile.write(img.read())
-                       #localFile.close()
-                       '''  
                      
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
@@ -179,7 +113,18 @@ def webhook():
                     pass
 
                 if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                    pass
+                    sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
+                    recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+
+                    # The payload param is a developer-defined field which is set in a postback
+                    # button for Structured Messages
+                    payload = event["postback"]["payload"]
+
+                    log("received postback from {recipient} with payload {payload}".format(recipient=recipient_id, payload=payload))
+
+   
+                    # Notify sender that postback was successful
+                    send_message(sender_id, "Postback called")
 
     return "ok", 200
 
@@ -197,10 +142,23 @@ def send_website_button(recipient_id):
             "id": recipient_id
         },
         "message": {
-            "attachment":{
-            "type":"web_url",
-            "payload":{
-            "url": "https://axa-bs.com/"
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"Know about AXA",
+                    "buttons":[
+                    {
+                        "type":"web_url",
+                        "url":"https://www.axa-bs.com",
+                        "title":"Google"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Call Postback",
+                        "payload":"Payload for send_button_message()"
+                    }
+                    ]
                 }
             }
         }
@@ -224,10 +182,23 @@ def send_products_button(recipient_id):
             "id": recipient_id
         },
         "message": {
-            "attachment":{
-            "type":"web_url",
-            "payload":{
-            "url": "https://us.axa.com/axa-products/"
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"Know about Products",
+                    "buttons":[
+                    {
+                        "type":"web_url",
+                        "url":"https://www.axa-bs.com",
+                        "title":"Google"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Call Postback",
+                        "payload":"Payload for send_button_message()"
+                    }
+                    ]
                 }
             }
         }
@@ -237,7 +208,8 @@ def send_products_button(recipient_id):
         log(r.status_code)
         log(r.text)
 
-
+	
+	
 def send_policies_button(recipient_id):
     log("sending image to {recipient}".format(recipient=recipient_id))
 
@@ -252,39 +224,23 @@ def send_policies_button(recipient_id):
             "id": recipient_id
         },
         "message": {
-            "buttons":[{
-            "type":"web_url",
-            "url": "https://www.bharti-axalife.com/claims/faqs",
-            "title":"Visit Policies",
-            "webview_height_ratio": "full",
-	    "fallback_url": "http://www.bharti-axalife.com/"	    
-            }]
-        }
-    })
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-    if r.status_code != 200:
-        log(r.status_code)
-        log(r.text)
-	
-	
-def send_policies(recipient_id):
-    log("sending image to {recipient}".format(recipient=recipient_id))
-
-    params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-    }
-    headers = {
-        "Content-Type": "application/json"
-    }
-    data = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "attachment":{
-            "type":"web_url",
-            "payload":{
-            "url": "https://www.bharti-axalife.com/claims/faqs"
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"Know about Policies",
+                    "buttons":[
+                    {
+                        "type":"web_url",
+                        "url":"https://www.axa-bs.com",
+                        "title":"Google"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Call Postback",
+                        "payload":"Payload for send_button_message()"
+                    }
+                    ]
                 }
             }
         }
