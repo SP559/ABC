@@ -75,10 +75,7 @@ def received_message(event):
         message_text = event["message"]["text"]
 
         # parse message_text and give appropriate response   
-        if message_text == 'image':
-            send_image_message(sender_id)
-
-        elif message_text == 'hi':
+        if message_text == 'hi':
             send_first_reply(sender_id)
 
         elif message_text == 'hey':
@@ -88,24 +85,24 @@ def received_message(event):
             send_first_reply(sender_id)
 
         elif message_text == 'axa':
-            send_button_message(sender_id)
+            send_share_message(sender_id)
 
         elif message_text == 'insurance':
-            send_generic_message(sender_id)
+            send_button_message(sender_id)
 
         elif message_text == 'insurance claim':
-            send_share_message(sender_id)
+            send_generic_message(sender_id)
             
         elif message_text == 'video':
-            send_video_reply(sender_id)
+            send_video_message(sender_id)
         
         elif ((time.strftime("%d/%m/%Y"))==message_text):
               send_image_message(sender_id)
-			  send_message(sender_id, "What is your query about?")
-			  send_quick_reply(sender_id)
+              send_text_message(sender_id, "Hi, What is your query about?")
+	      send_quick_reply(sender_id)
                 
         elif(re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$',time.strftime("%d/%m/%Y"))):
-              send_message(sender_id, "Hi, What is your query about?")
+              send_text_message(sender_id, "Hi, What is your query about?")
               send_quick_reply(sender_id)
                     
         elif message_text == 'audio':
