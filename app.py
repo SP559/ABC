@@ -97,7 +97,7 @@ def received_message(event):
             send_share_message(sender_id)
 
         else: # default case
-            send_message(sender_id, str(english_bot.get_response(message_text)))
+            send_text_message(sender_id, str(english_bot.get_response(message_text)))
 
     elif "attachments" in event["message"]:
         message_attachments = event["message"]["attachments"]   
