@@ -87,13 +87,13 @@ def received_message(event):
         elif message_text == 'hello':
             send_quick_reply(sender_id)
 
-        elif message_text == 'button':
+        elif message_text == 'axa':
             send_button_message(sender_id)
 
-        elif message_text == 'generic':
+        elif message_text == 'insurance':
             send_generic_message(sender_id)
 
-        elif message_text == 'share':
+        elif message_text == 'insurance claim':
             send_share_message(sender_id)
 
         else: # default case
@@ -101,7 +101,7 @@ def received_message(event):
 
     elif "attachments" in event["message"]:
         message_attachments = event["message"]["attachments"]   
-        send_text_message(sender_id, "Message with attachment received")
+        send_text_message(sender_id, "Message with attachment received, we will contact you soon..")
 
 
 # Message event functions
@@ -134,32 +134,32 @@ def send_generic_message(recipient_id):
                 "payload": {
                     "template_type": "generic",
                     "elements": [{
-                        "title": "rift",
-                        "subtitle": "Next-generation virtual reality",
-                        "item_url": "https://www.oculus.com/en-us/rift/",               
-                        "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+                        "title": "AXA",
+                        "subtitle": "Hey, we care for you..",
+                        "item_url": "https://www.axa-bs.com/",               
+                        "image_url": "http://www.pme-dz.com/wp-content/uploads/2013/05/axa-assurance-megeve-haute-savoie-mont-blanc-alpes-808.png",
                         "buttons": [{
                             "type": "web_url",
-                            "url": "https://www.oculus.com/en-us/rift/",
-                            "title": "Open Web URL"
+                            "url": "https://www.axa-bs.com/",
+                            "title": "Read our policies"
                         }, {
                             "type": "postback",
-                            "title": "Call Postback",
+                            "title": "Upload attachment",
                             "payload": "Payload for first bubble",
                         }],
                     }, {
-                        "title": "touch",
-                        "subtitle": "Your Hands, Now in VR",
-                        "item_url": "https://www.oculus.com/en-us/touch/",               
-                        "image_url": "http://messengerdemo.parseapp.com/img/touch.png",
+                        "title": "AXA",
+                        "subtitle": "Hey, we care for you..",
+                        "item_url": "https://www.axa-bs.com/",               
+                        "image_url": "http://www.pme-dz.com/wp-content/uploads/2013/05/axa-assurance-megeve-haute-savoie-mont-blanc-alpes-808.png",
                         "buttons": [{
                             "type": "web_url",
-                            "url": "https://www.oculus.com/en-us/touch/",
-                            "title": "Open Web URL"
+                            "url": "https://www.axa-bs.com/",
+                            "title": "Read our policies"
                         }, {
                             "type": "postback",
-                            "title": "Call Postback",
-                            "payload": "Payload for second bubble",
+                            "title": "Upload attachment",
+                            "payload": "Payload for first bubble",
                         }]
                     }]
                 }
@@ -199,7 +199,7 @@ def send_quick_reply(recipient_id):
             "id": recipient_id
         },
         "message":{
-            "text":"Choose from the options",
+            "text":"Hey, What is your query about? Choose from the options..",
             "quick_replies":[
               {
                 "content_type":"text",
@@ -297,16 +297,16 @@ def send_button_message(recipient_id):
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text":"What do you want to do next?",
+                    "text":"Welcome to AXA",
                     "buttons":[
                     {
                         "type":"web_url",
-                        "url":"https://www.google.com",
-                        "title":"Google"
+                        "url":"https://www.axa-bs.com",
+                        "title":"Visit our website"
                     },
                     {
                         "type":"postback",
-                        "title":"Call Postback",
+                        "title":"Ok",
                         "payload":"Payload for send_button_message()"
                     }
                     ]
