@@ -252,13 +252,13 @@ def send_policies_button(recipient_id):
             "id": recipient_id
         },
         "message": {
-            "button":{
+            "button":[{
             "type":"web_url",
             "url": "https://www.bharti-axalife.com/claims/faqs",
             "title":"Select Criteria",
             "webview_height_ratio": "full",
 	    "fallback_url": "http://www.bharti-axalife.com/"	    
-            }
+            }]
         }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
