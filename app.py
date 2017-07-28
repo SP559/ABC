@@ -79,13 +79,13 @@ def received_message(event):
             send_image_message(sender_id)
 
         elif message_text == 'hi':
-            send_quick_reply(sender_id)
+            send_first_reply(sender_id)
 
         elif message_text == 'hey':
-            send_quick_reply(sender_id)
+            send_first_reply(sender_id)
 
         elif message_text == 'hello':
-            send_quick_reply(sender_id)
+            send_first_reply(sender_id)
 
         elif message_text == 'axa':
             send_button_message(sender_id)
@@ -95,10 +95,29 @@ def received_message(event):
 
         elif message_text == 'insurance claim':
             send_share_message(sender_id)
+            
+        elif message_text == 'video':
+            send_video_reply(sender_id)
+        
+        elif ((time.strftime("%d/%m/%Y"))==message_text):
+              send_image_message(sender_id)
+			  send_message(sender_id, "What is your query about?")
+			  send_quick_reply(sender_id)
+                
+        elif(re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$',time.strftime("%d/%m/%Y"))):
+              send_message(sender_id, "Hi, What is your query about?")
+              send_quick_reply(sender_id)
+                    
+        elif message_text == 'audio':
+            send_audio_message(sender_id)
+
+        elif message_text == 'file':
+            send_file_message(sender_id)
 
         else: # default case
             send_text_message(sender_id, str(english_bot.get_response(message_text)))
-
+            send_quick_reply(sender_id)
+            
     elif "attachments" in event["message"]:
         message_attachments = event["message"]["attachments"]   
         send_text_message(sender_id, "Message with attachment received, we will contact you soon..")
@@ -182,13 +201,44 @@ def send_image_message(recipient_id):
             "attachment": {
                 "type":"image",
                 "payload":{
-                    "url":"http://i.imgur.com/76rJlO9.jpg"
+                    "url":"http://www.happybirthday.quotesms.com/images/latest-happy-birthday-images.jpg"
                 }
             }
         }
     })
 
     log("sending image to {recipient}: ".format(recipient=recipient_id))
+
+    call_send_api(message_data)
+    
+def send_first_reply(recipient_id):
+    
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message":{
+            "text":"Hey, When is your birthday? or Choose from the options to know more about axa..",
+            "quick_replies":[
+              {
+                "content_type":"text",
+                "title":"video",
+                "payload":"video"
+              },
+              {
+                "content_type":"text",
+                "title":"audio",
+                "payload":"audio"
+              },
+              {
+                "content_type":"text",
+                "title":"file",
+                "payload":"file"
+              },
+            ]
+          }
+    })
+    log("sending file to {recipient}: ".format(recipient=recipient_id))
 
     call_send_api(message_data)
 
@@ -233,7 +283,7 @@ def send_file_message(recipient_id):
             "attachment": {
                 "type":"file",
                 "payload":{
-                    "url":"http://ee.usc.edu/~redekopp/ee355/EE355_Syllabus.pdf"
+                    "url":"https://www.axa.com.sg/pdf/claims/travel/travel_claim_form.pdf"
                 }
             }
         }
@@ -275,7 +325,7 @@ def send_video_message(recipient_id):
             "attachment": {
                 "type":"video",
                 "payload":{
-                    "url":"http://techslides.com/demos/sample-videos/small.mp4"
+                    "url":"https://www.youtube.com/watch?v=od9Bw7jWmmM"
                 }
             }
         }
@@ -334,8 +384,8 @@ def send_share_message(recipient_id):
                     "template_type":"generic",
                     "elements":[
                     {
-                        "title":"Reddit link",
-                        "subtitle":"Something funny or interesting",
+                        "title":"AXA",
+                        "subtitle":"Hey, know more about AXA",
                         "image_url":"https://pbs.twimg.com/profile_images/667516091330002944/wOaS8FKS.png",
                         "buttons":[
                         {
@@ -368,10 +418,10 @@ def received_postback(event):
 
     if payload == 'Get Started':
         # Get Started button was pressed
-        send_text_message(sender_id, "Welcome to SoCal Echo Bot! Anything you type will be echoed back to you, except for some keywords.")
+        send_text_message(sender_id, "Welcome to AXA! Type- hi, hello or hey or Shoot your query.")
     else:
         # Notify sender that postback was successful
-        send_text_message(sender_id, "Postback called")
+        send_text_message(sender_id, "Please upload")
 
 
 def call_send_api(message_data):
@@ -393,58 +443,6 @@ def log(message):  # simple wrapper for logging to stdout on heroku
     print str(message)
     sys.stdout.flush()
 
-
-# @app.route('/', methods=['POST'])
-# def set_greeting_text():
-#     # Sets greeting text on welcome screen
-#     message_data = json.dumps({
-#         "setting_type":"greeting",
-#         "greeting":{
-#             "text":"Hi {{user_first_name}}, welcome to this bot."
-#         }
-#     })
-#     params = {
-#         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-#     }
-#     headers = {
-#         "Content-Type": "application/json"
-#     }
-    
-#     r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=message_data)
-#     if r.status_code != 200:
-#         log("setting greeting text")
-#         log(r.status_code)
-#         log(r.text)
-
-#     return "ok", 200
-
-    
-# @app.route('/', methods=['POST'])
-# def set_get_started_button():
-#     # Sets get started button on welcome screen
-#     message_data = json.dumps({
-#         "setting_type":"call_to_actions",
-#         "thread_state":"new_thread",
-#         "call_to_actions":[
-#         {
-#             "payload":"Get Started"
-#         }
-#         ]
-#     })
-#     params = {
-#         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-#     }
-#     headers = {
-#         "Content-Type": "application/json"
-#     }
-    
-#     r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=message_data)
-#     if r.status_code != 200:
-#         log("setting get started button")
-#         log(r.status_code)
-#         log(r.text)
-
-#     return "ok", 200
 
 
 if __name__ == '__main__':
