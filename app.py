@@ -78,7 +78,7 @@ def received_message(event):
         if message_text == 'image':
             send_image_message(sender_id)
 
-        elif message_text == 'file':
+        elif message_text == 'receive guide':
             send_file_message(sender_id)
 	
         elif message_text == 'hi':
@@ -90,14 +90,14 @@ def received_message(event):
 	elif message_text == 'hello':
             send_first_reply(sender_id)
 	
-        elif message_text == 'audio':
+        elif message_text == 'play audio':
             send_audio_message(sender_id)
 	
 	elif ((time.strftime("%d/%m/%Y"))==message_text):
              send_image_message(sender_id)
 	     send_quick_reply(sender_id)
 
-        elif message_text == 'video':
+        elif message_text == 'play video':
             send_video_message(sender_id)
 	
 	elif message_text == 'axa':
@@ -114,7 +114,7 @@ def received_message(event):
             send_quick_reply(sender_id)
     elif "attachments" in event["message"]:
         message_attachments = event["message"]["attachments"]   
-        send_text_message(sender_id, "Message with attachment received")
+        send_text_message(sender_id, "Message with attachment received, we will contact you soon")
 
 
 # Message event functions
@@ -172,7 +172,7 @@ def send_quick_reply(recipient_id):
             "id": recipient_id
         },
         "message":{
-            "text":"Hey, What is your query about? Choose from the options..",
+            "text":"What is your query about? Choose from the options..",
             "quick_replies":[
               {
                 "content_type":"text",
@@ -184,10 +184,25 @@ def send_quick_reply(recipient_id):
                 "title":"insurance",
                 "payload":"insurance"
               },
-              {
+	      {
                 "content_type":"text",
                 "title":"insurance claim",
                 "payload":"insurance claim"
+              },
+	      {
+                "content_type":"text",
+                "title":"receive guide",
+                "payload":"receive guide"
+              },
+	      {
+                "content_type":"text",
+                "title":"play audio",
+                "payload":"play audio"
+              },
+              {
+                "content_type":"text",
+                "title":"play video",
+                "payload":"play video"
               },
             ]
           }
@@ -218,7 +233,7 @@ def send_generic_message(recipient_id):
                             "title": "Read our policies"
                         }, {
                             "type": "postback",
-                            "title": "Call Postback",
+                            "title": "Upload attachment",
                             "payload": "Payload for first bubble",
                         }],
                     }, {
@@ -232,7 +247,7 @@ def send_generic_message(recipient_id):
                             "title": "Read our policies"
                         }, {
                             "type": "postback",
-                            "title": "Call Postback",
+                            "title": "Upload attachment",
                             "payload": "Payload for first bubble",
                         }]
                     }]
@@ -277,7 +292,7 @@ def send_file_message(recipient_id):
             "attachment": {
                 "type":"file",
                 "payload":{
-                    "url":"http://ee.usc.edu/~redekopp/ee355/EE355_Syllabus.pdf"
+                    "url":"http://www3.canisius.edu/~yany/python/Python4DataAnalysis.pdf"
                 }
             }
         }
@@ -298,7 +313,7 @@ def send_audio_message(recipient_id):
             "attachment": {
                 "type":"audio",
                 "payload":{
-                    "url":"http://www.stephaniequinn.com/Music/Allegro%20from%20Duet%20in%20C%20Major.mp3"
+                    "url":"http://planetofrock.com/samples/lballad.mp3"
                 }
             }
         }
@@ -319,7 +334,7 @@ def send_video_message(recipient_id):
             "attachment": {
                 "type":"video",
                 "payload":{
-                    "url":"http://techslides.com/demos/sample-videos/small.mp4"
+                    "url":"https://www.w3schools.com/html/mov_bbb.mp4"
                 }
             }
         }
