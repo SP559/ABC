@@ -215,7 +215,7 @@ def send_generic_message(recipient_id):
                         "buttons": [{
                             "type": "web_url",
                             "url": "https://www.axa-bs.com/",
-                            "title": "title": "Read our policies"
+                            "title": "Read our policies"
                         }, {
                             "type": "postback",
                             "title": "Call Postback",
@@ -229,7 +229,7 @@ def send_generic_message(recipient_id):
                         "buttons": [{
                             "type": "web_url",
                             "url": "https://www.axa-bs.com/",
-                            "title": "title": "Read our policies"
+                            "title": "Read our policies"
                         }, {
                             "type": "postback",
                             "title": "Call Postback",
