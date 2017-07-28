@@ -78,14 +78,14 @@ def received_message(event):
         if message_text == 'image':
             send_image_message(sender_id)
 
-        elif message_text == 'file':
-            send_file_message(sender_id)
+        elif message_text == 'hi':
+            send_quick_reply(sender_id)
 
-        elif message_text == 'audio':
-            send_audio_message(sender_id)
+        elif message_text == 'hey':
+            send_quick_reply(sender_id)
 
-        elif message_text == 'video':
-            send_video_message(sender_id)
+        elif message_text == 'hello':
+            send_quick_reply(sender_id)
 
         elif message_text == 'button':
             send_button_message(sender_id)
@@ -192,6 +192,36 @@ def send_image_message(recipient_id):
 
     call_send_api(message_data)
 
+def send_quick_reply(recipient_id):
+    
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message":{
+            "text":"Choose from the options",
+            "quick_replies":[
+              {
+                "content_type":"text",
+                "title":"axa",
+                "payload":"axa"
+              },
+              {
+                "content_type":"text",
+                "title":"insurance",
+                "payload":"insurance"
+              },
+              {
+                "content_type":"text",
+                "title":"insurance claim",
+                "payload":"insurance claim"
+              },
+            ]
+          }
+    })
+    log("sending file to {recipient}: ".format(recipient=recipient_id))
+
+    call_send_api(message_data)
 
 def send_file_message(recipient_id):
 
@@ -209,7 +239,7 @@ def send_file_message(recipient_id):
         }
     })
 
-    log("sending file to {recipient}: ".format(recipient=recipient_id))
+    log("sending quick reply to {recipient}: ".format(recipient=recipient_id))
 
     call_send_api(message_data)
 
