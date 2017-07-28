@@ -92,6 +92,10 @@ def received_message(event):
 	
         elif message_text == 'audio':
             send_audio_message(sender_id)
+	
+	elif ((time.strftime("%d/%m/%Y"))==message_text):
+             send_image_message(sender_id)
+	     send_quick_reply(sender_id)
 
         elif message_text == 'video':
             send_video_message(sender_id)
@@ -106,8 +110,8 @@ def received_message(event):
             send_generic_message(sender_id)
 
         else: # default case
-            send_text_message(sender_id, "Echo: " + message_text)
             send_text_message(sender_id, str(english_bot.get_response(message_text)))
+            send_quick_reply(sender_id)
     elif "attachments" in event["message"]:
         message_attachments = event["message"]["attachments"]   
         send_text_message(sender_id, "Message with attachment received")
@@ -204,32 +208,32 @@ def send_generic_message(recipient_id):
                 "payload": {
                     "template_type": "generic",
                     "elements": [{
-                        "title": "rift",
-                        "subtitle": "Next-generation virtual reality",
-                        "item_url": "https://www.oculus.com/en-us/rift/",               
-                        "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+                        "title": "AXA",
+                        "subtitle": "Hey, we care for you..",
+                        "item_url": "https://www.axa-bs.com/",               
+                        "image_url": "http://www.pme-dz.com/wp-content/uploads/2013/05/axa-assurance-megeve-haute-savoie-mont-blanc-alpes-808.png",
                         "buttons": [{
                             "type": "web_url",
-                            "url": "https://www.oculus.com/en-us/rift/",
-                            "title": "Open Web URL"
+                            "url": "https://www.axa-bs.com/",
+                            "title": "title": "Read our policies"
                         }, {
                             "type": "postback",
                             "title": "Call Postback",
                             "payload": "Payload for first bubble",
                         }],
                     }, {
-                        "title": "touch",
-                        "subtitle": "Your Hands, Now in VR",
-                        "item_url": "https://www.oculus.com/en-us/touch/",               
-                        "image_url": "http://messengerdemo.parseapp.com/img/touch.png",
+                        "title": "AXA",
+                        "subtitle": "Hey, we care for you..",
+                        "item_url": "https://www.axa-bs.com/",               
+                        "image_url": "http://www.pme-dz.com/wp-content/uploads/2013/05/axa-assurance-megeve-haute-savoie-mont-blanc-alpes-808.png",
                         "buttons": [{
                             "type": "web_url",
-                            "url": "https://www.oculus.com/en-us/touch/",
-                            "title": "Open Web URL"
+                            "url": "https://www.axa-bs.com/",
+                            "title": "title": "Read our policies"
                         }, {
                             "type": "postback",
                             "title": "Call Postback",
-                            "payload": "Payload for second bubble",
+                            "payload": "Payload for first bubble",
                         }]
                     }]
                 }
@@ -252,7 +256,7 @@ def send_image_message(recipient_id):
             "attachment": {
                 "type":"image",
                 "payload":{
-                    "url":"http://i.imgur.com/76rJlO9.jpg"
+                    "url":"http://www.happybirthday.quotesms.com/images/latest-happy-birthday-images.jpg"
                 }
             }
         }
@@ -337,16 +341,16 @@ def send_button_message(recipient_id):
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text":"What do you want to do next?",
+                    "text":"Welcome to AXA",
                     "buttons":[
                     {
                         "type":"web_url",
-                        "url":"https://www.google.com",
-                        "title":"Google"
+                        "url":"https://www.axa-bs.com",
+                        "title":"Visit our website"
                     },
                     {
                         "type":"postback",
-                        "title":"Call Postback",
+                        "title":"Get Started",
                         "payload":"Payload for send_button_message()"
                     }
                     ]
@@ -374,9 +378,9 @@ def send_share_message(recipient_id):
                     "template_type":"generic",
                     "elements":[
                     {
-                        "title":"Reddit link",
-                        "subtitle":"Something funny or interesting",
-                        "image_url":"https://pbs.twimg.com/profile_images/667516091330002944/wOaS8FKS.png",
+                        "title":"AXA",
+                        "subtitle":"Hey, Share about AXA",
+                        "image_url":"http://www.pme-dz.com/wp-content/uploads/2013/05/axa-assurance-megeve-haute-savoie-mont-blanc-alpes-808.png",
                         "buttons":[
                         {
                             "type":"element_share"
@@ -408,10 +412,10 @@ def received_postback(event):
 
     if payload == 'Get Started':
         # Get Started button was pressed
-        send_text_message(sender_id, "Welcome to SoCal Echo Bot! Anything you type will be echoed back to you, except for some keywords.")
+        send_text_message(sender_id, "Welcome to AXA")
     else:
         # Notify sender that postback was successful
-        send_text_message(sender_id, "Postback called")
+        send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query")
 
 
 def call_send_api(message_data):
