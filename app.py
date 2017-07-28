@@ -345,7 +345,7 @@ def received_postback(event):
         send_text_message(sender_id, "Welcome to AXA! Type- (hi), (hello) or (hey) or Shoot your query.")
     else:
         # Notify sender that postback was successful
-        send_text_message(sender_id, "Please upload")
+        send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query")
 
 
 def call_send_api(message_data):
