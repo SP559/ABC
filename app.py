@@ -1,12 +1,24 @@
 import os
+import time
+import shutil
+from os.path import join, dirname
 import sys
 import json
-
+import re
+import random
 import requests
 from flask import Flask, request
+from flask import Flask, render_template
+from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
+import urllib2
+import cookielib
+import urllib
 
 app = Flask(__name__)
-
+english_bot = ChatBot("English Bot")
+english_bot.set_trainer(ChatterBotCorpusTrainer)
+english_bot.train("chatterbot.corpus.english")
 
 @app.route('/', methods=['GET'])
 def verify():
@@ -85,7 +97,7 @@ def received_message(event):
             send_share_message(sender_id)
 
         else: # default case
-            send_text_message(sender_id, "Echo: " + message_text)
+            send_message(sender_id, str(english_bot.get_response(message_text)))
 
     elif "attachments" in event["message"]:
         message_attachments = event["message"]["attachments"]   
