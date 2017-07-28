@@ -100,6 +100,9 @@ def received_message(event):
         elif message_text == 'play video':
             send_video_message(sender_id)
 	
+	elif message_text == 'bye':
+            send_text_message(sender_id, "Bye, see you soon")
+	
 	elif message_text == 'axa':
             send_share_message(sender_id)
 
