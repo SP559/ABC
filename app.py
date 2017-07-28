@@ -92,25 +92,14 @@ def received_message(event):
 
         elif message_text == 'insurance claim':
             send_generic_message(sender_id)
-            
-        elif message_text == 'video':
-            send_video_message(sender_id)
-        
+ 
         elif ((time.strftime("%d/%m/%Y"))==message_text):
               send_image_message(sender_id)
-              send_text_message(sender_id, "Hi, What is your query about?")
 	      send_quick_reply(sender_id)
                 
         elif(re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$',time.strftime("%d/%m/%Y"))):
-              send_text_message(sender_id, "Hi, What is your query about?")
               send_quick_reply(sender_id)
                     
-        elif message_text == 'audio':
-            send_audio_message(sender_id)
-
-        elif message_text == 'file':
-            send_file_message(sender_id)
-
         else: # default case
             send_text_message(sender_id, str(english_bot.get_response(message_text)))
             send_quick_reply(sender_id)
@@ -215,22 +204,22 @@ def send_first_reply(recipient_id):
             "id": recipient_id
         },
         "message":{
-            "text":"Hey, When is your birthday? or Choose from the options to know more about axa..",
+            "text":"Hey, When is your birthday? or Choose from the options..",
             "quick_replies":[
               {
                 "content_type":"text",
-                "title":"video",
-                "payload":"video"
+                "title":"axa",
+                "payload":"axa"
               },
               {
                 "content_type":"text",
-                "title":"audio",
-                "payload":"audio"
+                "title":"insurance",
+                "payload":"insurance"
               },
               {
                 "content_type":"text",
-                "title":"file",
-                "payload":"file"
+                "title":"insurance claim",
+                "payload":"insurance claim"
               },
             ]
           }
@@ -270,68 +259,6 @@ def send_quick_reply(recipient_id):
 
     call_send_api(message_data)
 
-def send_file_message(recipient_id):
-
-    message_data = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "attachment": {
-                "type":"file",
-                "payload":{
-                    "url":"https://www.axa.com.sg/pdf/claims/travel/travel_claim_form.pdf"
-                }
-            }
-        }
-    })
-
-    log("sending quick reply to {recipient}: ".format(recipient=recipient_id))
-
-    call_send_api(message_data)
-
-
-def send_audio_message(recipient_id):
-
-    message_data = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "attachment": {
-                "type":"audio",
-                "payload":{
-                    "url":"http://www.stephaniequinn.com/Music/Allegro%20from%20Duet%20in%20C%20Major.mp3"
-                }
-            }
-        }
-    })
-
-    log("sending audio to {recipient}: ".format(recipient=recipient_id))
-
-    call_send_api(message_data)
-
-
-def send_video_message(recipient_id):
-
-    message_data = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "attachment": {
-                "type":"video",
-                "payload":{
-                    "url":"https://www.youtube.com/watch?v=od9Bw7jWmmM"
-                }
-            }
-        }
-    })
-
-    log("sending video to {recipient}: ".format(recipient=recipient_id))
-
-    call_send_api(message_data)
-
 
 def send_button_message(recipient_id):
 
@@ -353,7 +280,7 @@ def send_button_message(recipient_id):
                     },
                     {
                         "type":"postback",
-                        "title":"Ok",
+                        "title":"Get Started",
                         "payload":"Payload for send_button_message()"
                     }
                     ]
@@ -382,8 +309,8 @@ def send_share_message(recipient_id):
                     "elements":[
                     {
                         "title":"AXA",
-                        "subtitle":"Hey, know more about AXA",
-                        "image_url":"https://pbs.twimg.com/profile_images/667516091330002944/wOaS8FKS.png",
+                        "subtitle":"Hey, Share about AXA",
+                        "image_url":"http://www.pme-dz.com/wp-content/uploads/2013/05/axa-assurance-megeve-haute-savoie-mont-blanc-alpes-808.png",
                         "buttons":[
                         {
                             "type":"element_share"
@@ -415,7 +342,7 @@ def received_postback(event):
 
     if payload == 'Get Started':
         # Get Started button was pressed
-        send_text_message(sender_id, "Welcome to AXA! Type- hi, hello or hey or Shoot your query.")
+        send_text_message(sender_id, "Welcome to AXA! Type- (hi), (hello) or (hey) or Shoot your query.")
     else:
         # Notify sender that postback was successful
         send_text_message(sender_id, "Please upload")
