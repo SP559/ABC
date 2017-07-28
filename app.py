@@ -92,7 +92,7 @@ def webhook():
 		            "send attachment": send_attachment,
 			    "visit website": send_website,
 			    "visit products": send_products,
-			    "visit policies": send_policies,
+			    "visit policies": send_policies_button,
                             "contact us": send_contact,
                             "hi": send_bd,
                             "hello": send_bd,
@@ -237,6 +237,36 @@ def send_products(recipient_id):
         log(r.status_code)
         log(r.text)
 
+
+def send_policies_button(recipient_id):
+    log("sending image to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "button":{
+            "type":"web_url",
+            "url": "https://www.bharti-axalife.com/claims/faqs",
+            "title":"Select Criteria",
+            "webview_height_ratio": "full",
+	    "fallback_url": "http://www.bharti-axalife.com/"	    
+            }
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+	
+	
 def send_policies(recipient_id):
     log("sending image to {recipient}".format(recipient=recipient_id))
 
