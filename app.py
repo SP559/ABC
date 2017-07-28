@@ -90,8 +90,8 @@ def webhook():
                             "insurance": send_button,
                             "insurance claim": send_generic,
 		            "send attachment": send_attachment,
-			    "visit website": send_website,
-			    "visit products": send_products,
+			    "visit website": send_website_button,
+			    "visit products": send_products_button,
 			    "visit policies": send_policies_button,
                             "contact us": send_contact,
                             "hi": send_bd,
@@ -183,7 +183,7 @@ def webhook():
 
     return "ok", 200
 
-def send_website(recipient_id):
+def send_website_button(recipient_id):
     log("sending image to {recipient}".format(recipient=recipient_id))
 
     params = {
@@ -210,7 +210,7 @@ def send_website(recipient_id):
         log(r.status_code)
         log(r.text)
 
-def send_products(recipient_id):
+def send_products_button(recipient_id):
     log("sending image to {recipient}".format(recipient=recipient_id))
 
     params = {
@@ -252,10 +252,10 @@ def send_policies_button(recipient_id):
             "id": recipient_id
         },
         "message": {
-            "button":[{
+            "buttons":[{
             "type":"web_url",
             "url": "https://www.bharti-axalife.com/claims/faqs",
-            "title":"Select Criteria",
+            "title":"Visit Policies",
             "webview_height_ratio": "full",
 	    "fallback_url": "http://www.bharti-axalife.com/"	    
             }]
