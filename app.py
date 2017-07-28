@@ -101,7 +101,7 @@ def received_message(event):
               send_quick_reply(sender_id)
                     
         else: # default case
-            send_text_message(sender_id, str(english_bot.get_response(message_text)))
+            send_text_message(sender_id, "We will soon contact you")
             send_quick_reply(sender_id)
             
     elif "attachments" in event["message"]:
