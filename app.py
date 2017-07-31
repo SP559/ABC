@@ -440,7 +440,7 @@ def received_postback(event):
         # Notify sender that postback was successful
         send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query....")
 	time.sleep(10)
-	send_text_message(sender_id, "Bye....")
+	send_text_message(sender_id, "Bye....Since you did not respond")
 	send_text_message(sender_id, "In case you want to start again..we are starting over....")
         send_quick_reply(sender_id)
 
