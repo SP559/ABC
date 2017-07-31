@@ -93,6 +93,9 @@ def received_message(event):
         elif message_text == 'play audio':
             send_audio_message(sender_id)
 	
+	elif message_text == 'insurance related':
+            send_quick_reply(sender_id)
+	
 	elif ((time.strftime("%d/%m/%Y"))==message_text):
              send_image_message(sender_id)
 	     send_quick_reply(sender_id)
@@ -105,6 +108,10 @@ def received_message(event):
 	
 	elif message_text == 'axa':
             send_share_message(sender_id)
+	    send_first_reply(sender_id)
+	
+	elif message_text == 'chatterbot':
+            send_text_message(sender_id, str(english_bot.get_response(message_text)))
 
         elif message_text == 'insurance':
             send_button_message(sender_id)
@@ -144,22 +151,17 @@ def send_first_reply(recipient_id):
             "id": recipient_id
         },
         "message":{
-            "text":"Hey, When is your birthday? or Choose from the options..",
+            "text":"Welcome to AXA, When is your birthday? or Choose from the options..",
             "quick_replies":[
               {
                 "content_type":"text",
-                "title":"axa",
-                "payload":"axa"
+                "title":"chatterbot",
+                "payload":"chatterbot"
               },
               {
                 "content_type":"text",
-                "title":"insurance",
-                "payload":"insurance"
-              },
-              {
-                "content_type":"text",
-                "title":"insurance claim",
-                "payload":"insurance claim"
+                "title":"insurance related",
+                "payload":"insurance related"
               },
             ]
           }
@@ -397,7 +399,7 @@ def send_share_message(recipient_id):
                     "elements":[
                     {
                         "title":"AXA",
-                        "subtitle":"Hey, Share about AXA",
+                        "subtitle":"Hey, Share about AXA or start over",
                         "image_url":"http://www.pme-dz.com/wp-content/uploads/2013/05/axa-assurance-megeve-haute-savoie-mont-blanc-alpes-808.png",
                         "buttons":[
                         {
@@ -433,7 +435,8 @@ def received_postback(event):
         send_text_message(sender_id, "Welcome to AXA")
     else:
         # Notify sender that postback was successful
-        send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query")
+        send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query or start over")
+	send_first_reply(sender_id)
 
 
 def call_send_api(message_data):
