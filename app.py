@@ -108,6 +108,7 @@ def received_message(event):
 	
 	elif message_text == 'axa':
             send_share_message(sender_id)
+	    time.sleep(10)
 	    send_first_reply(sender_id)
 	
 	elif message_text == 'chatterbot':
@@ -437,6 +438,7 @@ def received_postback(event):
     else:
         # Notify sender that postback was successful
         send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query.. or Start over..")
+	time.sleep(10)
 	send_first_reply(sender_id)
 
 
