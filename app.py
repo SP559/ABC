@@ -101,7 +101,7 @@ def received_message(event):
 	elif message_text == 'insurance related':
             send_quick_reply(sender_id)
 	
-	elif(re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$',time.strftime("%d/%m/%Y"))):
+	elif(re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$',message_text)):
 	         if ((time.strftime("%d/%m/%Y"))==message_text):
                        send_image_message(sender_id)
 	         send_quick_reply(sender_id)
