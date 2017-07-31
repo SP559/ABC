@@ -101,9 +101,13 @@ def received_message(event):
 	elif message_text == 'insurance related':
             send_quick_reply(sender_id)
 	
-	elif ((time.strftime("%d/%m/%Y"))==message_text):
-             send_image_message(sender_id)
-	     send_quick_reply(sender_id)
+	elif(re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$',time.strftime("%d/%m/%Y"))):
+	         if ((time.strftime("%d/%m/%Y"))==message_text):
+                       send_image_message(sender_id)
+	               send_quick_reply(sender_id)
+		 else:
+		       send_text_message(sender_id, "You entered a wrong format")
+		       send_quick_reply(sender_id)
 
         elif message_text == 'play video':
             send_text_message(sender_id, "Click to play")
