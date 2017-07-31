@@ -80,6 +80,7 @@ def received_message(event):
 
         elif message_text == 'receive guide':
             send_file_message(sender_id)
+	    send_return(sender_id)
 	
         elif message_text == 'hi':
             send_first_reply(sender_id)
@@ -116,6 +117,7 @@ def received_message(event):
 	
 	elif message_text == 'axa':
             send_share_message(sender_id)
+	    send_return(sender_id)
 	
 	elif message_text == 'chatterbot':
             send_text_message(sender_id, "Welcome, Welcome to chatterbot, shoot it..")
