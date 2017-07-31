@@ -87,13 +87,16 @@ def received_message(event):
 	elif message_text == 'hey':
             send_first_reply(sender_id)
 	
+	elif message_text == 'return':
+            send_first_reply(sender_id)
+	
 	elif message_text == 'hello':
             send_first_reply(sender_id)
 	
         elif message_text == 'play audio':
 	    send_text_message(sender_id, "Click to listen")
             send_audio_message(sender_id)
-	    send_text_message(sender_id, "Thank you, click return to start over")
+	    send_return(sender_id)
 	
 	elif message_text == 'insurance related':
             send_quick_reply(sender_id)
@@ -105,7 +108,7 @@ def received_message(event):
         elif message_text == 'play video':
             send_text_message(sender_id, "Click to play")
             send_video_message(sender_id)
-	    send_text_message(sender_id, "Thank you, click return to start over")
+	    send_return(sender_id)
 	
 	elif message_text == 'bye':
             send_text_message(sender_id, "Bye, see you soon")
@@ -144,6 +147,32 @@ def send_text_message(recipient_id, message_text):
             "text": message_text
         }
     })
+
+    call_send_api(message_data)
+
+def send_return(recipient_id):
+    
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message":{
+            "text":"Whenever you want, click return to start over, bye to exit",
+            "quick_replies":[
+              {
+                "content_type":"text",
+                "title":"return",
+                "payload":"return"
+              },
+              {
+                "content_type":"text",
+                "title":"bye",
+                "payload":"bye"
+              },
+            ]
+          }
+    })
+    log("sending file to {recipient}: ".format(recipient=recipient_id))
 
     call_send_api(message_data)
 
