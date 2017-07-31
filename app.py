@@ -470,11 +470,8 @@ def received_postback(event):
         send_text_message(sender_id, "Welcome to AXA")
     else:
         # Notify sender that postback was successful
-        send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query....")
-	time.sleep(10)
-	send_text_message(sender_id, "Bye....Since you did not respond")
-	send_text_message(sender_id, "In case you want to start again..we are starting over....")
-        send_quick_reply(sender_id)
+        send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query....if not..")
+	send_return(sender_id)
 
 def call_send_api(message_data):
 
