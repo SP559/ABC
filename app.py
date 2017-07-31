@@ -93,6 +93,7 @@ def received_message(event):
         elif message_text == 'play audio':
 	    send_text_message(sender_id, "Click to listen")
             send_audio_message(sender_id)
+	    send_text_message(sender_id, "Thank you, click return to start over")
 	
 	elif message_text == 'insurance related':
             send_quick_reply(sender_id)
@@ -104,6 +105,7 @@ def received_message(event):
         elif message_text == 'play video':
             send_text_message(sender_id, "Click to play")
             send_video_message(sender_id)
+	    send_text_message(sender_id, "Thank you, click return to start over")
 	
 	elif message_text == 'bye':
             send_text_message(sender_id, "Bye, see you soon")
