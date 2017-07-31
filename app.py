@@ -111,7 +111,7 @@ def received_message(event):
 	    send_first_reply(sender_id)
 	
 	elif message_text == 'chatterbot':
-            send_text_message(sender_id, "Welcome, Welcome to chatterbot")
+            send_text_message(sender_id, "Welcome, Welcome to chatterbot, shoot it..")
             send_text_message(sender_id, str(english_bot.get_response(message_text)))
 
         elif message_text == 'insurance':
