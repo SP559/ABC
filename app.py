@@ -80,7 +80,7 @@ def received_message(event):
 
         elif message_text == 'receive guide':
             send_file_message(sender_id)
-	    time.sleep(10)
+	    time.sleep(5)
 	    send_first_reply(sender_id)
 	
         elif message_text == 'hi':
@@ -94,7 +94,7 @@ def received_message(event):
 	
         elif message_text == 'play audio':
             send_audio_message(sender_id)
-	    time.sleep(10)
+	    time.sleep(5)
 	    send_first_reply(sender_id)
 	
 	elif message_text == 'insurance related':
@@ -106,7 +106,7 @@ def received_message(event):
 
         elif message_text == 'play video':
             send_video_message(sender_id)
-	    time.sleep(10)
+	    time.sleep(5)
 	    send_first_reply(sender_id)
 	
 	elif message_text == 'bye':
@@ -114,7 +114,7 @@ def received_message(event):
 	
 	elif message_text == 'axa':
             send_share_message(sender_id)
-	    time.sleep(10)
+	    time.sleep(5)
 	    send_first_reply(sender_id)
 	
 	elif message_text == 'chatterbot':
@@ -123,12 +123,12 @@ def received_message(event):
 
         elif message_text == 'insurance':
             send_button_message(sender_id)
-	    time.sleep(10)
+	    time.sleep(5)
 	    send_first_reply(sender_id)
 
         elif message_text == 'insurance claim':
             send_generic_message(sender_id)
-	    time.sleep(10)
+	    time.sleep(5)
 	    send_first_reply(sender_id)
 
         else: # default case
