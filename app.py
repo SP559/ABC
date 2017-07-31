@@ -371,7 +371,7 @@ def send_button_message(recipient_id):
                     },
                     {
                         "type":"postback",
-                        "title":"Get Started",
+                        "title":"Upload attachment",
                         "payload":"Payload for send_button_message()"
                     }
                     ]
@@ -436,7 +436,7 @@ def received_postback(event):
         send_text_message(sender_id, "Welcome to AXA")
     else:
         # Notify sender that postback was successful
-        send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query or start over")
+        send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query.. or Start over..")
 	send_first_reply(sender_id)
 
 
