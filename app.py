@@ -80,7 +80,6 @@ def received_message(event):
 
         elif message_text == 'receive guide':
             send_file_message(sender_id)
-	    send_first_reply(sender_id)
 	
         elif message_text == 'hi':
             send_first_reply(sender_id)
@@ -93,7 +92,6 @@ def received_message(event):
 	
         elif message_text == 'play audio':
             send_audio_message(sender_id)
-	    send_first_reply(sender_id)
 	
 	elif message_text == 'insurance related':
             send_quick_reply(sender_id)
@@ -111,18 +109,15 @@ def received_message(event):
 	
 	elif message_text == 'axa':
             send_share_message(sender_id)
-	    send_first_reply(sender_id)
 	
 	elif message_text == 'chatterbot':
             send_text_message(sender_id, "Welcome, Welcome to chatterbot, shoot it..")
 
         elif message_text == 'insurance':
             send_button_message(sender_id)
-	    send_first_reply(sender_id)
 
         elif message_text == 'insurance claim':
             send_generic_message(sender_id)
-	    send_first_reply(sender_id)
 
         else: # default case
             send_text_message(sender_id, str(english_bot.get_response(message_text)))
@@ -440,9 +435,11 @@ def received_postback(event):
         send_text_message(sender_id, "Welcome to AXA")
     else:
         # Notify sender that postback was successful
-        send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query.. or Start over..")
-	
-
+        send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query....")
+	time.sleep(10)
+	send_text_message(sender_id, "Bye....")
+	send_text_message(sender_id, "In case you want to start again..we are starting over....")
+        send_quick_reply(sender_id)
 
 def call_send_api(message_data):
 
