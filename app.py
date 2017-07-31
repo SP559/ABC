@@ -80,6 +80,8 @@ def received_message(event):
 
         elif message_text == 'receive guide':
             send_file_message(sender_id)
+	    time.sleep(10)
+	    send_first_reply(sender_id)
 	
         elif message_text == 'hi':
             send_first_reply(sender_id)
@@ -92,6 +94,8 @@ def received_message(event):
 	
         elif message_text == 'play audio':
             send_audio_message(sender_id)
+	    time.sleep(10)
+	    send_first_reply(sender_id)
 	
 	elif message_text == 'insurance related':
             send_quick_reply(sender_id)
@@ -102,6 +106,8 @@ def received_message(event):
 
         elif message_text == 'play video':
             send_video_message(sender_id)
+	    time.sleep(10)
+	    send_first_reply(sender_id)
 	
 	elif message_text == 'bye':
             send_text_message(sender_id, "Bye, see you soon")
@@ -117,9 +123,13 @@ def received_message(event):
 
         elif message_text == 'insurance':
             send_button_message(sender_id)
+	    time.sleep(10)
+	    send_first_reply(sender_id)
 
         elif message_text == 'insurance claim':
             send_generic_message(sender_id)
+	    time.sleep(10)
+	    send_first_reply(sender_id)
 
         else: # default case
             send_text_message(sender_id, str(english_bot.get_response(message_text)))
@@ -438,8 +448,7 @@ def received_postback(event):
     else:
         # Notify sender that postback was successful
         send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query.. or Start over..")
-	time.sleep(10)
-	send_first_reply(sender_id)
+	
 
 
 def call_send_api(message_data):
