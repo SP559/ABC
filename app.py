@@ -99,7 +99,7 @@ def received_message(event):
             send_audio_message(sender_id)
 	    send_return(sender_id)
 	
-	elif message_text == 'insurance related':
+	elif message_text == 'book reading':
             send_quick_reply(sender_id)
 	
 	elif(re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$',message_text)):
@@ -115,17 +115,17 @@ def received_message(event):
 	elif message_text == 'bye':
             send_text_message(sender_id, "Bye, see you soon")
 	
-	elif message_text == 'axa':
+	elif message_text == 'share book':
             send_share_message(sender_id)
 	    send_return(sender_id)
 	
 	elif message_text == 'chatterbot':
             send_text_message(sender_id, "Welcome, Welcome to chatterbot, shoot it..")
 
-        elif message_text == 'insurance':
+        elif message_text == 'read book':
             send_button_message(sender_id)
 
-        elif message_text == 'insurance claim':
+        elif message_text == 'buy book':
             send_generic_message(sender_id)
 
         else: # default case
@@ -186,7 +186,7 @@ def send_first_reply(recipient_id):
             "id": recipient_id
         },
         "message":{
-            "text":"Welcome to AXA, When is your birthday? or Choose from the options..",
+            "text":"Welcome to Bookworm, When is your birthday? or Choose from the options..",
             "quick_replies":[
               {
                 "content_type":"text",
@@ -195,8 +195,8 @@ def send_first_reply(recipient_id):
               },
               {
                 "content_type":"text",
-                "title":"insurance related",
-                "payload":"insurance related"
+                "title":"book reading",
+                "payload":"book reading"
               },
             ]
           }
@@ -216,23 +216,23 @@ def send_quick_reply(recipient_id):
             "quick_replies":[
               {
                 "content_type":"text",
-                "title":"axa",
-                "payload":"axa"
+                "title":"share book",
+                "payload":"share book"
               },
               {
                 "content_type":"text",
-                "title":"insurance",
-                "payload":"insurance"
+                "title":"read book",
+                "payload":"read book"
               },
 	      {
                 "content_type":"text",
-                "title":"insurance claim",
-                "payload":"insurance claim"
+                "title":"buy book",
+                "payload":"buy book"
               },
 	      {
                 "content_type":"text",
-                "title":"receive guide",
-                "payload":"receive guide"
+                "title":"receive python guide",
+                "payload":"receive python guide"
               },
 	      {
                 "content_type":"text",
@@ -263,28 +263,28 @@ def send_generic_message(recipient_id):
                 "payload": {
                     "template_type": "generic",
                     "elements": [{
-                        "title": "AXA",
-                        "subtitle": "Hey, we care for you..",
-                        "item_url": "https://www.axa-bs.com/",               
-                        "image_url": "http://www.pme-dz.com/wp-content/uploads/2013/05/axa-assurance-megeve-haute-savoie-mont-blanc-alpes-808.png",
+                        "title": "Book",
+                        "subtitle": "Hey, we love books..",
+                        "item_url": "http://sumitopinions.blogspot.in/",               
+                        "image_url": "http://www.freepressjournal.in/wp-content/uploads/2013/07/bookworm.png",
                         "buttons": [{
                             "type": "web_url",
-                            "url": "https://www.axa-bs.com/",
-                            "title": "Read our policies"
+                            "url": "http://sumitopinions.blogspot.in/",
+                            "title": "Visit our blog"
                         }, {
                             "type": "postback",
                             "title": "Upload attachment",
                             "payload": "Payload for first bubble",
                         }],
                     }, {
-                        "title": "AXA",
-                        "subtitle": "Hey, we care for you..",
-                        "item_url": "https://www.axa-bs.com/",               
-                        "image_url": "http://www.pme-dz.com/wp-content/uploads/2013/05/axa-assurance-megeve-haute-savoie-mont-blanc-alpes-808.png",
+                        "title": "Book",
+                        "subtitle": "Hey, we love books..",
+                        "item_url": "http://sumitopinions.blogspot.in/",               
+                        "image_url": "http://www.freepressjournal.in/wp-content/uploads/2013/07/bookworm.png",
                         "buttons": [{
                             "type": "web_url",
-                            "url": "https://www.axa-bs.com/",
-                            "title": "Read our policies"
+                            "url": "http://sumitopinions.blogspot.in/",
+                            "title": "Read our blog"
                         }, {
                             "type": "postback",
                             "title": "Upload attachment",
@@ -396,11 +396,11 @@ def send_button_message(recipient_id):
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text":"Welcome to AXA",
+                    "text":"Welcome to Bookworm",
                     "buttons":[
                     {
                         "type":"web_url",
-                        "url":"https://www.axa-bs.com",
+                        "url":"http://sumitopinions.blogspot.in/",
                         "title":"Visit our website"
                     },
                     {
@@ -433,9 +433,9 @@ def send_share_message(recipient_id):
                     "template_type":"generic",
                     "elements":[
                     {
-                        "title":"AXA",
-                        "subtitle":"Hey, Share about AXA or start over",
-                        "image_url":"http://www.pme-dz.com/wp-content/uploads/2013/05/axa-assurance-megeve-haute-savoie-mont-blanc-alpes-808.png",
+                        "title":"Book",
+                        "subtitle":"Hey, Share about Bookworm or start over",
+                        "image_url":"http://www.freepressjournal.in/wp-content/uploads/2013/07/bookworm.png",
                         "buttons":[
                         {
                             "type":"element_share"
@@ -470,7 +470,7 @@ def received_postback(event):
         send_text_message(sender_id, "Welcome to AXA")
     else:
         # Notify sender that postback was successful
-        send_text_message(sender_id, "Please upload attachment if it is insurance claim or Shoot your query....if not..")
+        send_text_message(sender_id, "Please upload book if you want to share with the rest of the world....if not..")
 	send_return(sender_id)
 
 def call_send_api(message_data):
